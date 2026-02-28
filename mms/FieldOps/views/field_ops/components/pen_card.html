@@ -1,0 +1,30 @@
+{% from "field_ops/components/state_tag.html" import status_dot %}
+{% from "field_ops/components/event_scroller.html" import event_scroller %}
+
+{% macro pen_card(pen) %}
+<div class="fo-card fo-pen-card" style="cursor:pointer;"
+     hx-get="/pig-farm/pen/{{ pen.id }}"
+     hx-target="#main-panel"
+     hx-push-url="true">
+
+    <div style="display:flex; justify-content:space-between;">
+        <div>
+            {{ status_dot(pen.status) }}
+            <b>{{ pen.code }}</b>
+            （{{ pen.quantity }}头）
+        </div>
+
+        <div>
+            <button class="btn btn-sm btn-outline-primary"
+                    hx-get="/pig-farm/pen/{{ pen.id }}/event-form"
+                    hx-target="#modal-body"
+                    data-bs-toggle="modal" data-bs-target="#actionModal">
+                +
+            </button>
+        </div>
+    </div>
+
+    {{ event_scroller(pen.recent_events) }}
+
+</div>
+{% endmacro %}

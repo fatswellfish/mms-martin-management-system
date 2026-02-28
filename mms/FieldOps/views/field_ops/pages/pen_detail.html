@@ -1,0 +1,51 @@
+{% extends "field_ops/base_field_ops.html" %}
+{% from "field_ops/components/batch_card.html" import batch_card %}
+{% from "field_ops/components/event_scroller.html" import event_scroller %}
+{% block fieldops_content %}
+
+<h3><b>栏位 {{ pen.code }}</b></h3>
+<p class="text-muted">A5 · 栏位详情</p>
+
+<!-- 栏基础信息 -->
+<div class="fo-card">
+    <div>
+        <b>当前存栏：</b> {{ pen.quantity }} 头
+    </div>
+
+    <div>
+        <b>状态：</b> {{ pen.status }}
+    </div>
+
+    <div style="margin-top:6px;">
+        {{ event_scroller(recent_events) }}
+    </div>
+</div>
+
+<!-- 批次列表 -->
+<div class="fo-card">
+    <h5>该栏的批次：</h5>
+    {% for b in batches %}
+        {{ batch_card(b) }}
+    {% endfor %}
+</div>
+
+<!-- 事件时间线 -->
+<div class="fo-card">
+    <h5>事件时间线（Timeline）</h5>
+
+    {% for day in timeline %}
+        <div style="margin-bottom:10px;">
+            <b>{{ day.date }}</b>
+            <ul>
+                {% for e in day.events %}
+                <li>
+                    <b>{{ e.event_type }}</b> 数量: {{ e.quantity }}  
+                    <small class="text-muted">{{ e.time }}</small>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

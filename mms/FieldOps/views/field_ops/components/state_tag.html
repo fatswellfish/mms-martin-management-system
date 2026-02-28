@@ -1,0 +1,36 @@
+{% macro status_dot(status) %}
+    {% if status == "normal" %}
+        <span class="fo-status-dot fo-status-normal"></span>
+    {% elif status == "warning" %}
+        <span class="fo-status-dot fo-status-warning"></span>
+    {% elif status == "danger" %}
+        <span class="fo-status-dot fo-status-danger"></span>
+    {% else %}
+        <span class="fo-status-dot fo-status-empty"></span>
+    {% endif %}
+{% endmacro %}
+
+
+{% macro event_tag(type) %}
+    {% if type == "DEATH" %}
+        <span class="fo-tag fo-tag-death">死亡</span>
+    {% elif type == "MOVE_PEN" %}
+        <span class="fo-tag fo-tag-move">转栏</span>
+    {% elif type == "MOVE_BUYER" %}
+        <span class="fo-tag fo-tag-sale">售出</span>
+    {% elif type == "FINAL_SALE" %}
+        <span class="fo-tag fo-tag-sale">出栏</span>
+    {% elif type == "VACCINE" %}
+        <span class="fo-tag fo-tag-vaccine">疫苗</span>
+    {% elif type == "TEST" %}
+        <span class="fo-tag fo-tag-vaccine">检测</span>
+    {% elif type == "TREATMENT" %}
+        <span class="fo-tag fo-tag-vaccine">治疗</span>
+    {% elif type == "NOTE" %}
+        <span class="fo-tag fo-tag-note">备注</span>
+    {% elif type == "VITAL_SIGNS" %}
+        <span class="fo-tag fo-tag-vital">体征</span>
+    {% elif type == "GROWTH" %}
+        <span class="fo-tag fo-tag-growth">生长</span>
+    {% endif %}
+{% endmacro %}

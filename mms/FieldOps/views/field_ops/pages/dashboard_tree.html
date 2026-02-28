@@ -1,0 +1,23 @@
+{% from "field_ops/components/category_card.html" import category_card %}
+{% from "field_ops/components/barn_card.html" import barn_card %}
+{% from "field_ops/components/pen_card.html" import pen_card %}
+
+{% for cat in structure %}
+<div class="fo-card">
+    <h4>{{ cat.name }}（{{ cat.code }}）</h4>
+
+    <div style="margin-left:10px;">
+        {% for barn in cat.barns %}
+        <div class="fo-card" style="margin-top:10px;">
+            <h5>{{ barn.name }}（{{ barn.barn_number }}号舍）</h5>
+
+            <div class="qms-grid">
+                {% for pen in barn.pens %}
+                    {{ pen_card(pen) }}
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endfor %}

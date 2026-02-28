@@ -1,0 +1,36 @@
+{% extends "field_ops/base_field_ops.html" %}
+
+{% block fieldops_content %}
+
+<h3><b>批次 {{ batch.batch_code }}</b></h3>
+<p class="text-muted">A6 · 批次详情</p>
+
+<div class="fo-card">
+    <b>当前存栏：</b> {{ batch.current_alive }}  
+    <b>死亡：</b> {{ batch.dead }}  
+    <b>售出：</b> {{ batch.sold }}
+</div>
+
+<!-- 流向 lineage 树（简化版） -->
+<div class="fo-card">
+    <h5>批次流向（Lineage）</h5>
+    <pre style="white-space:pre-wrap;">{{ lineage | tojson }}</pre>
+</div>
+
+<!-- 时间线 -->
+<div class="fo-card">
+    <h5>事件时间线（Timeline）</h5>
+
+    {% for day in timeline %}
+        <div style="margin-bottom:10px;">
+            <b>{{ day.date }}</b>
+            <ul>
+                {% for e in day.events %}
+                <li>{{ e.event_type }}  {{ e.quantity }}  <small>{{ e.time }}</small></li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

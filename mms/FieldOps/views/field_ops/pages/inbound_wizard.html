@@ -1,0 +1,31 @@
+{% extends "field_ops/base_field_ops.html" %}
+
+{% block fieldops_content %}
+
+<h3><b>进猪向导（IN Wizard）</b></h3>
+<p class="text-muted">A8 · 一次进猪 + 分栏批自动生成</p>
+
+<div class="fo-card">
+    <form hx-post="/pig-farm/api/inbound/create"
+          hx-target="#wizard-result">
+
+        <label>日期：</label>
+        <input name="date" type="date" required class="form-control">
+
+        <label>来源说明：</label>
+        <input name="source_info" type="text" class="form-control">
+
+        <label>总头数：</label>
+        <input name="total_quantity" type="number" class="form-control">
+
+        <label>分栏 JSON：</label>
+        <textarea name="pen_allocations" class="form-control"
+                  placeholder='例如 {"12":200, "13":300}'></textarea>
+
+        <button class="btn btn-primary" style="margin-top:10px;">提交</button>
+    </form>
+</div>
+
+<div id="wizard-result"></div>
+
+{% endblock %}

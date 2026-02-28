@@ -1,0 +1,58 @@
+{# =============================== #}
+{# 猪舍类型（Type）弹窗 partial   #}
+{# 被结构管理 & 可视化管理复用     #}
+{# =============================== #}
+
+<style>
+.modal-mask {
+    display:none;
+    position:fixed;
+    left:0; top:0; right:0; bottom:0;
+    background:rgba(0,0,0,0.45);
+    z-index:9999;
+}
+.modal-box {
+    background:white;
+    width:420px;
+    margin:80px auto;
+    padding:20px;
+    border-radius:4px;
+}
+</style>
+
+<div id="typeModal" class="modal-mask">
+  <div class="modal-box">
+    <h4 id="typeModalTitle">类型</h4>
+
+    <form id="typeForm" method="post">
+
+        <input type="hidden" name="type_id" id="typeId">
+
+        <div class="mb-2">
+            <label>类型名称：</label>
+            <input type="text" name="name" id="typeName" required style="width:100%;">
+        </div>
+
+        <div class="mb-2">
+            <label>类型代码（英文/缩写）：</label>
+            <input type="text" name="code" id="typeCode" required style="width:100%;"
+                   placeholder="如 FARROWING / NURSERY / GROWING / SECOND_NURSERY">
+        </div>
+
+        <div class="mb-2">
+            <label>描述：</label>
+            <textarea name="description" id="typeDesc"
+                      style="width:100%; height:80px;"></textarea>
+        </div>
+
+        <div class="mt-2">
+            <button type="submit" class="btn btn-primary">保存</button>
+            <button type="button" class="btn btn-secondary"
+                    onclick="closeModal('typeModal')">
+                取消
+            </button>
+        </div>
+    </form>
+
+  </div>
+</div>

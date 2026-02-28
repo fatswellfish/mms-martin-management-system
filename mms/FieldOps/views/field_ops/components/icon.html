@@ -1,0 +1,27 @@
+{# 统一图标组件，用于表示事件/状态 #}
+
+{% macro icon(type) %}
+    {% if type == "DEATH" %}
+        💀
+    {% elif type == "MOVE_PEN" %}
+        ↔
+    {% elif type == "MOVE_BUYER" %}
+        🚚
+    {% elif type == "FINAL_SALE" %}
+        🏁
+    {% elif type == "VACCINE" %}
+        💉
+    {% elif type == "TEST" %}
+        🧪
+    {% elif type == "TREATMENT" %}
+        💊
+    {% elif type == "NOTE" %}
+        📝
+    {% elif type == "VITAL_SIGNS" %}
+        ❤️
+    {% elif type == "GROWTH" %}
+        📈
+    {% else %}
+        ❔
+    {% endif %}
+{% endmacro %}

@@ -1,0 +1,21 @@
+{% from "field_ops/components/state_tag.html" import event_tag %}
+
+{% macro batch_card(batch) %}
+<div class="fo-card" style="border-left: 5px solid #6c8cff;">
+    <div>
+        <b>{{ batch.batch_code }}</b>
+        <span class="text-muted" style="font-size:12px;">
+          存活：{{ batch.current_alive }}
+          死亡：{{ batch.dead }}
+          售出：{{ batch.sold }}
+        </span>
+    </div>
+
+    {% if batch.recent_event %}
+        <div style="margin-top:6px;">
+            {{ event_tag(batch.recent_event.type) }}
+            {{ batch.recent_event.description }}
+        </div>
+    {% endif %}
+</div>
+{% endmacro %}

@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% block title %}猪场结构视图{% endblock %}
+
+{% block content %}
+<h2>猪场结构视图</h2>
+
+<div style="margin-bottom: 16px;">
+    <a href="/pig-farm/tree?view=pen" class="btn {% if view=='pen' %}btn-primary{% else %}btn-secondary{% endif %}">
+        场内视角（栏 → 批次）
+    </a>
+    <a href="/pig-farm/tree?view=buyer" class="btn {% if view=='buyer' %}btn-primary{% else %}btn-secondary{% endif %}">
+        售出追踪视角（买方 → 批次）
+    </a>
+</div>
+
+<hr>
+
+<div style="display:flex; gap:20px;">
+
+    <!-- 左侧树 -->
+    <div style="flex:0 0 40%; max-height:700px; overflow-y:auto; border:1px solid #ddd; padding:10px;">
+
+        {% if view == 'pen' %}
+            <h3>场内结构</h3>
+            <ul>
+                {% for t in barn_types %}
+                    <li>
+                        <strong>{{ t.name }}</strong>
+                        <ul>
+                        {% for barn in barns_by_type.get(t.id, []) %}
+                            <li>
+                                {{ barn.name }}
+                                <ul>
+                                {% for pen in pens_by_barn.get(barn.id, []) %}
+                                    {% set blist = batches_by_pen.get(pen.id, []) %}
+                                    {% set total_in_pen = blist | sum(attribute='quantity') if blist else 0 %}
+                                    <li>
+                                        <a href="/pig-farm/pen/{{ pen.id }}">
+                                            {{ pen.name }}（容量 {{ pen.max_capacity }}，现存 {{ total_in_pen }}）
+                                        </a>
+
+                                        {% if blist %}
+                                            <ul>
+                                                {% for b in blist %}
+                                                    <li>
+                                                        <strong>{{ b.batch_code }}</strong>：
+                                                        本栏 {{ b.quantity }}，
+                                                        批次总活 {{ b.current_alive }}
+                                                        [<a href="/pig-farm/batch/{{ b.batch_id }}/tree">批次树</a>]
+                                                    </li>
+                                                {% endfor %}
+                                            </ul>
+                                        {% endif %}
+                                    </li>
+                                {% endfor %}
+                                </ul>
+                            </li>
+                        {% endfor %}
+                        </ul>
+                    </li>
+                {% endfor %}
+            </ul>
+
+        {% elif view == 'buyer' %}
+            <h3>售出追踪视角</h3>
+            <ul>
+            {% for (bid, bname), rows in buyers.items() %}
+                <li>
+                    <strong>{{ bname or '未命名买方' }}</strong>
+                    <ul>
+                        {% for r in rows %}
+                        <li>
+                            批次 {{ r.batch_code }}：{{ r.quantity }} 头
+                            （总活 {{ r.current_alive }}，死 {{ r.total_dead }}，售讫 {{ r.total_sold_final }}）
+                            [<a href="/pig-farm/batch/{{ r.batch_id }}/tree">批次树</a>]
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+
+    </div>
+
+    <!-- 右侧占位说明 -->
+    <div style="flex:1; border:1px solid #ddd; padding:10px;">
+        <h3>提示</h3>
+        <p>左侧为树状结构。</p>
+        <p>点击栏 → 进入栏详情页。</p>
+        <p>点击批次号 → 进入批次视角树。</p>
+    </div>
+
+</div>
+
+{% endblock %}

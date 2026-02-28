@@ -1,3 +1,5 @@
+写入文件 mms_agent/agent/agent_scope.py；
+内容为：
 from pathlib import Path
 
 # 项目根目录允许写入

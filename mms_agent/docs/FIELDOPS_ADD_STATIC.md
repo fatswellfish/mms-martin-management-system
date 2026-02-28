@@ -1,0 +1,17 @@
+写入文件 mms/FieldOps/main.py；
+内容为：
+from fastapi import FastAPI
+from fastapi.staticfiles import StaticFiles
+from .router import router as fieldops_router
+from .router_views import router as fieldops_views_router
+
+app = FastAPI(title="FieldOps")
+
+# 挂载静态资源（旧路径 /static）
+app.mount("/static", StaticFiles(directory="mms/static"), name="static")
+
+# 首页级路由
+app.include_router(fieldops_router)
+
+# HTML 视图路由
+app.include_router(fieldops_views_router)

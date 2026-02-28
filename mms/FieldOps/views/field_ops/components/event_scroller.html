@@ -1,0 +1,13 @@
+{% from "field_ops/components/icon.html" import icon %}
+
+{% macro event_scroller(events) %}
+<div class="fo-scroller">
+    {% for ev in events %}
+        <span>
+            {{ icon(ev.type) }}
+            {{ ev.type }} {{ ev.quantity }}
+            <small>({{ ev.time }})</small>
+        </span>
+    {% endfor %}
+</div>
+{% endmacro %}

@@ -1,0 +1,8 @@
+{% macro barn_card(barn) %}
+<div class="fo-card" style="cursor:pointer"
+     hx-get="/pig-farm/category/{{ barn.category_id }}/barn/{{ barn.id }}"
+     hx-target="#main-panel"
+     hx-push-url="true">
+    <h5>{{ barn.name }}（{{ barn.barn_number }}号舍）</h5>
+</div>
+{% endmacro %}

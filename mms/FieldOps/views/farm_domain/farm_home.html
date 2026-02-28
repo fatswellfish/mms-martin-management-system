@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% block title %}FO · 现场管理{% endblock %}
+
+{% block content %}
+<h2>FO · 现场管理（Field Operations）</h2>
+
+<p class="text-muted" style="font-size:13px;">
+  现场管理模块用于田间试验、动物批次、猪舍结构管理、可视化监控等业务场景。
+  当前已接入“猪场结构管理”和“猪只批次管理”功能。
+</p>
+
+<hr>
+
+<style>
+  .fo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 12px;
+    margin-top: 12px;
+  }
+  .fo-block {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 10px 12px;
+    font-size: 13px;
+    background-color: #fafafa;
+  }
+  .fo-block h3 {
+    margin: 0 0 4px 0;
+    font-size: 15px;
+  }
+  .fo-block ul {
+    margin: 4px 0 0 16px;
+    padding: 0;
+  }
+  .fo-block li {
+    margin: 3px 0;
+  }
+</style>
+
+<div class="fo-grid">
+
+  <!-- 结构管理 -->
+  <div class="fo-block">
+    <h3>猪场结构管理（Structure Management）</h3>
+    <ul>
+      <li><a href="/pig-farm/structure">结构管理（类型 → 猪舍 → 栏位）</a></li>
+    </ul>
+    <p class="text-muted" style="font-size:12px; margin-top:4px;">
+      用于维护猪场基础结构，包括类型、猪舍、栏位的增删改查。
+      所有可视化界面与批次管理都基于此结构。
+    </p>
+  </div>
+
+  <!-- 猪场批次管理 -->
+  <div class="fo-block">
+    <h3>猪只批次管理（Animal Batch Management）</h3>
+    <ul>
+      <li><a href="/pig-farm/tree?view=pen">场内视角（类型 → 舍 → 栏 → 批次）</a></li>
+      <li><a href="/pig-farm/tree?view=buyer">售出追踪视角（买方 → 批次）</a></li>
+      <li><a href="/pig-farm/batch/1/tree" class="text-muted" target="_blank">批次树示例（可删）</a></li>
+    </ul>
+    <p class="text-muted" style="font-size:12px;">
+      已支持批次生命周期事件：进猪、转栏、死亡、免疫、治疗、售出、售出讫等。
+    </p>
+  </div>
+
+  <!-- 现场试验 -->
+  <div class="fo-block">
+    <h3>现场试验（规划中）</h3>
+    <p class="text-muted">田间试验任务、合作农场试点等业务将扩展在此。</p>
+  </div>
+
+  <!-- 动物健康数据 -->
+  <div class="fo-block">
+    <h3>动物健康数据（规划中）</h3>
+    <p class="text-muted">未来可加入免疫计划、健康评分、疾病监测等数据。</p>
+  </div>
+
+  <!-- 数据分析 -->
+  <div class="fo-block">
+    <h3>现场数据分析（规划中）</h3>
+    <p class="text-muted">后续将加入死亡率趋势、免疫覆盖率、批次活性等数据图表。</p>
+  </div>
+
+</div>
+
+{% endblock %}

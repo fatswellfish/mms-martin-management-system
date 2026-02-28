@@ -1,0 +1,278 @@
+{% extends "base.html" %}
+{% block title %}猪场结构管理{% endblock %}
+
+{% block content %}
+<h2>猪场结构管理（Type → Barn → Pen）</h2>
+
+<p class="text-muted" style="font-size:13px;">
+  本页面用于结构维护（不是批次管理）。可新建/编辑/删除类型、猪舍与栏位。
+  未来可视化管理将复用相同弹窗和数据结构。
+</p>
+
+<hr>
+
+<style>
+.structure-container {
+    display: flex;
+    gap: 20px;
+}
+.structure-tree {
+    flex: 0 0 35%;
+    max-height: 800px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+.structure-detail {
+    flex: 1;
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+.tree-title {
+    font-weight: bold;
+    margin-top: 12px;
+    margin-bottom: 6px;
+    font-size: 14px;
+}
+.tree ul {
+    margin-left: 16px;
+    margin-bottom: 4px;
+}
+.op-buttons {
+    margin-top: 10px;
+}
+.op-buttons button {
+    margin-right: 6px;
+}
+</style>
+
+
+<div class="structure-container">
+
+    <!-- 左侧树 -->
+    <div class="structure-tree">
+        <h3>结构树</h3>
+
+        <button class="btn btn-primary btn-sm" onclick="openTypeCreate()">
+            新建类型（Type）
+        </button>
+
+        <div class="tree">
+            <ul>
+                {% for t in barn_types %}
+                <li>
+                    <span style="font-weight:bold;">{{ t.name }}（{{ t.code }}）</span>
+                    <button class="btn btn-light btn-sm" onclick="openTypeEdit({{ t.id }}, '{{ t.name }}', '{{ t.code }}', `{{ t.description or '' }}`)">编辑</button>
+                    <button class="btn btn-danger btn-sm" onclick="openTypeDelete({{ t.id }})">删除</button>
+
+                    <button class="btn btn-secondary btn-sm"
+                            onclick="openBarnCreate({{ t.id }}, '{{ t.name }}')">
+                        新建舍
+                    </button>
+
+                    {% set blist = barns_by_type.get(t.id, []) %}
+                    {% if blist %}
+                    <ul>
+                        {% for b in blist %}
+                        <li>
+                            <span>{{ b.name }}（编号 {{ b.barn_number }}）</span>
+                            <button class="btn btn-light btn-sm"
+                                    onclick="openBarnEdit({{ b.id }}, '{{ b.name }}', {{ b.barn_number }}, `{{ b.remark or '' }}`)">
+                                编辑
+                            </button>
+                            <button class="btn btn-danger btn-sm"
+                                    onclick="openBarnDelete({{ b.id }})">
+                                删除
+                            </button>
+
+                            <!-- 新建栏 -->
+                            <button class="btn btn-secondary btn-sm"
+                                    onclick="openPenCreate({{ b.id }})">
+                                + 栏
+                            </button>
+
+                            {% set plist = pens_by_barn.get(b.id, []) %}
+                            {% if plist %}
+                            <ul>
+                                {% for p in plist %}
+                                <li>
+                                    栏 {{ p.pen_number }}
+                                    （容量 {{ p.max_capacity }}，{{ "治疗" if p.is_for_treatment else "普通" }}）
+                                    <button class="btn btn-light btn-sm"
+                                            onclick="openPenEdit({{ p.id }}, {{ p.pen_number }}, {{ p.max_capacity }}, {{ p.is_for_treatment }}, `{{ p.remark or '' }}`)">
+                                        编辑
+                                    </button>
+                                    <button class="btn btn-danger btn-sm"
+                                            onclick="openPenDelete({{ p.id }})">
+                                        删除
+                                    </button>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                            {% endif %}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <!-- 右侧详情区（占位，后续可扩展） -->
+    <div class="structure-detail">
+        <h3>说明</h3>
+        <p>
+            左侧为结构树，点击操作按钮可新增、编辑或删除节点。
+            右侧空白区未来会显示节点详情，也会与可视化界面联动。
+        </p>
+        <p class="text-muted">
+            当前版本右侧仅作为说明。
+        </p>
+    </div>
+
+</div>
+
+
+<!-- ============================== -->
+<!-- 引入弹窗子模板（partial） -->
+<!-- ============================== -->
+{% include "farm/_modal_type.html" %}
+{% include "farm/_modal_barn.html" %}
+{% include "farm/_modal_pen.html" %}
+
+
+<!-- ============================== -->
+<!-- 前端脚本：打开弹窗、设置 action -->
+<!-- ============================== -->
+
+<script>
+/* -------- 类型 TYPE -------- */
+function openTypeCreate() {
+    document.getElementById("typeModalTitle").innerText = "新建类型";
+    document.getElementById("typeForm").action = "/pig-farm/structure/type/create";
+    document.getElementById("typeId").value = "";
+    document.getElementById("typeName").value = "";
+    document.getElementById("typeCode").value = "";
+    document.getElementById("typeDesc").value = "";
+    document.getElementById("typeModal").style.display = "block";
+}
+
+function openTypeEdit(id, name, code, desc) {
+    document.getElementById("typeModalTitle").innerText = "编辑类型";
+    document.getElementById("typeForm").action = "/pig-farm/structure/type/update";
+    document.getElementById("typeId").value = id;
+    document.getElementById("typeName").value = name;
+    document.getElementById("typeCode").value = code;
+    document.getElementById("typeDesc").value = desc;
+    document.getElementById("typeModal").style.display = "block";
+}
+
+function openTypeDelete(id) {
+    if (confirm("确认删除该类型？")) {
+        const f = document.createElement("form");
+        f.method = "post";
+        f.action = "/pig-farm/structure/type/delete";
+        let ip = document.createElement("input");
+        ip.type="hidden"; ip.name="type_id"; ip.value=id;
+        f.appendChild(ip);
+        document.body.appendChild(f);
+        f.submit();
+    }
+}
+
+
+/* -------- 舍 BARN -------- */
+function openBarnCreate(typeId, typeName) {
+    document.getElementById("barnModalTitle").innerText = "新建猪舍（属于类型：" + typeName + "）";
+    document.getElementById("barnForm").action = "/pig-farm/structure/barn/create";
+    document.getElementById("barnTypeId").value = typeId;
+
+    // 带入默认值（后端蓝图已确认）
+    fetch("/pig-farm/structure/defaults/barn/" + typeId)
+        .then(res => res.json())
+        .then(d => {
+            document.getElementById("barnName").value = d.default_barn_name;
+            document.getElementById("barnNumber").value = d.default_barn_number;
+            document.getElementById("barnTotalPens").value = d.total_pens;
+            document.getElementById("barnNormalCount").value = d.normal_count;
+            document.getElementById("barnNormalCapacity").value = d.normal_capacity;
+            document.getElementById("barnTreatmentCount").value = d.treatment_count;
+            document.getElementById("barnTreatmentCapacity").value = d.treatment_capacity;
+            document.getElementById("barnDesc").value = "";
+            document.getElementById("barnModal").style.display = "block";
+        });
+}
+
+function openBarnEdit(id, name, number, remark) {
+    document.getElementById("barnModalTitle").innerText = "编辑猪舍";
+    document.getElementById("barnForm").action = "/pig-farm/structure/barn/update";
+    document.getElementById("barnId").value = id;
+    document.getElementById("barnName").value = name;
+    document.getElementById("barnNumber").value = number;
+    document.getElementById("barnDesc").value = remark;
+
+    document.getElementById("barnConfigArea").style.display = "none";  // 编辑舍时不调整栏
+    document.getElementById("barnModal").style.display = "block";
+}
+
+function openBarnDelete(id) {
+    if (confirm("确认删除该猪舍及其全部栏？")) {
+        const f = document.createElement("form");
+        f.method="post";
+        f.action="/pig-farm/structure/barn/delete";
+        let ip=document.createElement("input");
+        ip.type="hidden"; ip.name="barn_id"; ip.value=id;
+        f.appendChild(ip);
+        document.body.appendChild(f);
+        f.submit();
+    }
+}
+
+
+/* -------- 栏 PEN -------- */
+function openPenCreate(barnId) {
+    document.getElementById("penModalTitle").innerText = "新增栏";
+    document.getElementById("penForm").action = "/pig-farm/structure/pen/create";
+    document.getElementById("penId").value = "";
+    document.getElementById("penBarnId").value = barnId;
+    document.getElementById("penNumber").value = "";
+    document.getElementById("penCapacity").value = "";
+    document.getElementById("penIsTreatment").checked = false;
+    document.getElementById("penDesc").value = "";
+    document.getElementById("penModal").style.display = "block";
+}
+
+function openPenEdit(id, number, cap, isTreat, remark) {
+    document.getElementById("penModalTitle").innerText = "编辑栏";
+    document.getElementById("penForm").action = "/pig-farm/structure/pen/update";
+    document.getElementById("penId").value = id;
+    document.getElementById("penNumber").value = number;
+    document.getElementById("penCapacity").value = cap;
+    document.getElementById("penIsTreatment").checked = isTreat == 1;
+    document.getElementById("penDesc").value = remark;
+    document.getElementById("penModal").style.display = "block";
+}
+
+function openPenDelete(id) {
+    if (confirm("确认删除该栏？")) {
+        const f=document.createElement("form");
+        f.method="post";
+        f.action="/pig-farm/structure/pen/delete";
+        let ip=document.createElement("input");
+        ip.type="hidden"; ip.name="pen_id"; ip.value=id;
+        f.appendChild(ip);
+        document.body.appendChild(f);
+        f.submit();
+    }
+}
+
+
+/* -------- 通用关闭 -------- */
+function closeModal(id) {
+    document.getElementById(id).style.display = "none";
+}
+</script>
+
+{% endblock %}

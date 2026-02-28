@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}FieldOps Dashboard{% endblock %}
+{% block content %}
+<h2>FieldOps · 现场运维 Dashboard</h2>
+<p class="text-muted" style="font-size:13px;">猪场结构、批次、事件、栏位、向导入口。</p>
+<hr>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;">
+    <div class="qms-block"><h4>Farm Tree</h4><a href="/FieldOps/farm-tree">进入 ▸</a></div>
+    <div class="qms-block"><h4>Batch Overview</h4><a href="/FieldOps/batch-detail">进入 ▸</a></div>
+    <div class="qms-block"><h4>Event Trace</h4><a href="/FieldOps/event-trace">进入 ▸</a></div>
+    <div class="qms-block"><h4>Barn / Pen View</h4><a href="/FieldOps/barn-view">进入 ▸</a></div>
+    <div class="qms-block"><h4>Inbound Wizard</h4><a href="/FieldOps/inbound-wizard">进入 ▸</a></div>
+    <div class="qms-block"><h4>Mass Event Wizard</h4><a href="/FieldOps/mass-event-wizard">进入 ▸</a></div>
+</div>
+{% endblock %}
