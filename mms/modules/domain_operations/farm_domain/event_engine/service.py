@@ -1,1 +1,2 @@
-class EventEngineService: pass
+class Service:
+    pass

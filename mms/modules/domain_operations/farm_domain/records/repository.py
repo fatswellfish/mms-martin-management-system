@@ -1,1 +1,2 @@
-class FarmRecordsRepository: pass
+class Repository:
+    pass

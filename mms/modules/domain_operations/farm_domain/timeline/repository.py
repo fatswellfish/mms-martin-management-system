@@ -1,1 +1,2 @@
-class FarmTimelineRepository: pass
+class Repository:
+    pass

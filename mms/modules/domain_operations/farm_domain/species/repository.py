@@ -1,1 +1,2 @@
-class FarmSpeciesRepository: pass
+class Repository:
+    pass
