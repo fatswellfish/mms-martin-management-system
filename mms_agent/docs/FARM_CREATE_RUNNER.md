@@ -1,3 +1,15 @@
+写入文件 mms/run_farm.py；
+内容为：
+from fastapi import FastAPI
+from mms.mms_agent_farm_loader import load_farm_modules
+
+app = FastAPI(title="FARM Standalone System")
+
+load_farm_modules(app)
+
+
+写入文件 mms/mms_agent_farm_loader.py；
+内容为：
 import importlib
 import pkgutil
 from fastapi import FastAPI
@@ -8,7 +20,7 @@ def load_farm_modules(app: FastAPI):
     try:
         pkg = importlib.import_module(BASE_PACKAGE)
     except Exception as e:
-        print("无法加载 FARM 根目录：", e)
+        print("无法加载 FARM 根目录:", e)
         return
 
     print("[farm_loader] scanning farm submodules...")
