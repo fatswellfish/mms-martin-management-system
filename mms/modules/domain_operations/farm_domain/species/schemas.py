@@ -1,0 +1,1 @@
+class FarmSpeciesSchema: pass

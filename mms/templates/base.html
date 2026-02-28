@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ title or "MMS" }}</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    {% include "components/nav.html" %}
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>

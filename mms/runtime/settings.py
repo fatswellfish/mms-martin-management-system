@@ -1,0 +1,2 @@
+TEMPLATE_PATHS = []
+STATIC_PATHS = []

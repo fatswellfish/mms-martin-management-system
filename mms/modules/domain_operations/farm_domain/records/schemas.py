@@ -1,0 +1,1 @@
+class FarmRecordsSchema: pass
