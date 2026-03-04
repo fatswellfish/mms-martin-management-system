@@ -1,0 +1,225 @@
+/* mms/FieldOps/static/css/styles.css */
+
+/* 通用样式 */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* 卡片样式 */
+.card {
+    background-color: #1e1e1e;
+    border: 1px solid #333;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+/* 标题样式 */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+}
+
+h1 {
+    font-size: 1.75rem;
+}
+
+h2 {
+    font-size: 1.5rem;
+}
+
+h3 {
+    font-size: 1.25rem;
+}
+
+/* 按钮样式 */
+button {
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    font-weight: 500;
+    padding: 8px 16px;
+    transition: all 0.2s ease;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+/* 输入框样式 */
+input[type="text"], input[type="number"] {
+    background-color: #2d2d2d;
+    border: 1px solid #444;
+    border-radius: 6px;
+    padding: 8px 12px;
+    color: #e0e0e0;
+    transition: border-color 0.2s ease;
+}
+
+input[type="text"]:focus, input[type="number"]:focus {
+    outline: none;
+    border-color: #4CAF50;
+    box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.3);
+}
+
+/* 事件流滚动条样式 */
+#events-scroll {
+    background-color: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 8px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.event-item {
+    padding: 8px;
+    border-bottom: 1px solid #333;
+    color: #ccc;
+}
+
+.event-item:last-child {
+    border-bottom: none;
+}
+
+.event-type-transfer {
+    color: #4CAF50;
+}
+
+.event-type-death {
+    color: #f44336;
+}
+
+.event-type-vaccination {
+    color: #2196F3;
+}
+
+.event-type-sick {
+    color: #ff9800;
+}
+
+.event-type-treatment {
+    color: #9c27b0;
+}
+
+/* 响应式网格 */
+@media (max-width: 768px) {
+    .grid-cols-1 md\:grid-cols-2 lg\:grid-cols-3 {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 480px) {
+    .grid-cols-1 md\:grid-cols-2 lg\:grid-cols-3 {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+    
+    .container {
+        padding: 12px;
+    }
+}
+
+/* 透明背景卡片（用于农场结构） */
+.farm-card {
+    background-color: rgba(30, 30, 30, 0.8);
+    backdrop-filter: blur(10px);
+}
+
+.barn-card {
+    background-color: rgba(30, 30, 30, 0.7);
+}
+
+.pen-card {
+    background-color: rgba(30, 30, 30, 0.6);
+}
+
+/* 动画效果 */
+.fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* 指令控制区样式 */
+#controls {
+    margin-top: 24px;
+}
+
+#controls label {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 0.9rem;
+}
+
+/* 按钮图标 */
+button svg {
+    width: 16px;
+    height: 16px;
+    margin-right: 6px;
+}
+
+/* 网格布局 */
+.grid {
+    display: grid;
+}
+
+.grid-cols-1 {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+.grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+/* 响应式调整 */
+@media (max-width: 1024px) {
+    .grid-cols-3 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .grid-cols-2 {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+}
+
+/* 滚动条自定义 */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #444;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #666;
+}
