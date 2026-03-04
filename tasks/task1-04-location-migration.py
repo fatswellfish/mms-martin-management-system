@@ -1,77 +1,60 @@
-# mms/FieldOps/migrations/versions/location_models.py
+# mms/FieldOps/migrations/location_migration.py
+# FieldOps 项目 - 位置体系数据库迁移脚本（已完成）
 
-from alembic import op
-import sqlalchemy as sa
-from sqlalchemy.dialects import postgresql
+from sqlalchemy import create_engine, MetaData, Table, Column, Integer, String, ForeignKey, DateTime, Boolean
+from sqlalchemy.orm import sessionmaker
+import datetime
 
-"""
-迁移脚本：创建位置体系模型（Farm, Barn, Pen）
-路径：mms/FieldOps/migrations/versions/location_models.py
-"""
+# 连接数据库（假设使用 SQLite，路径为 ./data/fieldops.db）
+db_url = "sqlite:///./data/fieldops.db"
+engine = create_engine(db_url)
+metadata = MetaData()
 
-revision = 'a1b2c3d4e5f6'
-depends_on = None
-branch_labels = None
-depends_on = None
+# 定义表结构（与 models/location.py 一致）
 
-def upgrade():
-    """
-    建立数据库表结构：farm, barn, pen
-    - 所有表使用小写+下划线命名规范
-    - 外键关联清晰，支持级联删除
-    - 添加索引提升查询性能（特别是 barn_type）
-    """
-    # 1. 创建 Farm 表
-    op.create_table(
-        'farm',
-        sa.Column('id', sa.Integer(), nullable=False),
-        sa.Column('name', sa.String(length=100), nullable=False, unique=True),
-        sa.Column('created_at', sa.DateTime(), nullable=False),
-        sa.Column('updated_at', sa.DateTime(), nullable=False),
-        sa.PrimaryKeyConstraint('id')
+def create_tables():
+    # Farm 表
+    farms_table = Table(
+        'farms', metadata,
+        Column('id', Integer, primary_key=True),
+        Column('name', String(100), nullable=False, unique=True),
+        Column('location', String(255)),
+        Column('created_at', DateTime, default=datetime.datetime.utcnow),
+        Column('updated_at', DateTime, default=datetime.datetime.utcnow, onupdate=datetime.datetime.utcnow)
     )
     
-    # 2. 创建 Barn 表
-    op.create_table(
-        'barn',
-        sa.Column('id', sa.Integer(), nullable=False),
-        sa.Column('farm_id', sa.Integer(), nullable=False),
-        sa.Column('name', sa.String(length=50), nullable=False),
-        sa.Column('barn_type', sa.String(length=20), nullable=False),
-        sa.Column('capacity', sa.Integer(), nullable=False, default=30),
-        sa.Column('is_reserved', sa.Boolean(), nullable=False, default=False),
-        sa.Column('created_at', sa.DateTime(), nullable=False),
-        sa.Column('updated_at', sa.DateTime(), nullable=False),
-        sa.ForeignKeyConstraint(['farm_id'], ['farm.id'], ondelete='CASCADE'),
-        sa.PrimaryKeyConstraint('id')
+    # Barn 表
+    barns_table = Table(
+        'barns', metadata,
+        Column('id', Integer, primary_key=True),
+        Column('name', String(100), nullable=False),
+        Column('type', String(50), nullable=False),
+        Column('capacity', Integer, nullable=False),
+        Column('reserved_count', Integer, default=0),
+        Column('farm_id', Integer, ForeignKey('farms.id'), nullable=False),
+        Column('created_at', DateTime, default=datetime.datetime.utcnow),
+        Column('updated_at', DateTime, default=datetime.datetime.utcnow, onupdate=datetime.datetime.utcnow)
     )
     
-    # 3. 为 barn_type 建立索引（提升按类型筛选性能）
-    op.create_index('ix_barn_barn_type', 'barn', ['barn_type'], unique=False)
-    
-    # 4. 创建 Pen 表
-    op.create_table(
-        'pen',
-        sa.Column('id', sa.Integer(), nullable=False),
-        sa.Column('barn_id', sa.Integer(), nullable=False),
-        sa.Column('name', sa.String(length=20), nullable=False),
-        sa.Column('capacity', sa.Integer(), nullable=False, default=15),
-        sa.Column('current_quantity', sa.Integer(), nullable=False, default=0),
-        sa.Column('is_reserved', sa.Boolean(), nullable=False, default=False),
-        sa.Column('created_at', sa.DateTime(), nullable=False),
-        sa.Column('updated_at', sa.DateTime(), nullable=False),
-        sa.ForeignKeyConstraint(['barn_id'], ['barn.id'], ondelete='CASCADE'),
-        sa.PrimaryKeyConstraint('id')
+    # Pen 表
+    pens_table = Table(
+        'pens', metadata,
+        Column('id', Integer, primary_key=True),
+        Column('name', String(100), nullable=False),
+        Column('status', String(20), default="empty"),
+        Column('current_batch_id', Integer, nullable=True),
+        Column('capacity', Integer, nullable=False),
+        Column('barn_id', Integer, ForeignKey('barns.id'), nullable=False),
+        Column('created_at', DateTime, default=datetime.datetime.utcnow),
+        Column('updated_at', DateTime, default=datetime.datetime.utcnow, onupdate=datetime.datetime.utcnow)
     )
     
-    # 5. 为 pen 表建立复合索引（提升多条件查询效率）
-    op.create_index('ix_pen_barn_id', 'pen', ['barn_id'], unique=False)
+    # 创建所有表
+    try:
+        metadata.create_all(engine)
+        print("✅ 位置体系数据库表已成功创建")
+    except Exception as e:
+        print(f"❌ 数据库创建失败: {e}")
 
-
-def downgrade():
-    """
-    回滚操作：删除所有位置相关表（用于版本回退）
-    """
-    op.drop_table('pen')
-    op.drop_table('barn')
-    op.drop_table('farm')
+if __name__ == "__main__":
+    create_tables()

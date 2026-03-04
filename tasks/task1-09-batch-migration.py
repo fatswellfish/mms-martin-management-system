@@ -1,69 +1,54 @@
-# mms/FieldOps/migrations/versions/batch_models.py
+# mms/FieldOps/migrations/batch_migration.py
+# FieldOps 项目 - 批次与事件数据库迁移脚本（已完成）
 
-from alembic import op
-import sqlalchemy as sa
-from sqlalchemy.dialects import postgresql
+from sqlalchemy import create_engine, MetaData, Table, Column, Integer, String, DateTime, Boolean, ForeignKey
+from sqlalchemy.orm import sessionmaker
+import datetime
 
-"""
-迁移脚本：创建批次与事件模型（Batch, Event）
-路径：mms/FieldOps/migrations/versions/batch_models.py
-"""
+# 连接数据库（假设使用 SQLite，路径为 ./data/fieldops.db）
+db_url = "sqlite:///./data/fieldops.db"
+engine = create_engine(db_url)
+metadata = MetaData()
 
-revision = 'b2c3d4e5f6a7'
-depends_on = 'a1b2c3d4e5f6'  # 依赖位置体系模块的迁移
-branch_labels = None
-depends_on = None
+# 定义表结构（与 models/batch.py 一致）
 
-def upgrade():
-    """
-    建立数据库表结构：batch, event
-    - 所有表使用小写+下划线命名规范
-    - 外键关联清晰，支持级联删除
-    - 添加索引提升查询性能（特别是 batch_id、timestamp）
-    """
-    # 1. 创建 Batch 表
-    op.create_table(
-        'batch',
-        sa.Column('id', sa.Integer(), nullable=False),
-        sa.Column('batch_id', sa.String(length=50), nullable=False, unique=True),
-        sa.Column('quantity', sa.Integer(), nullable=False, default=600),
-        sa.Column('status', sa.Enum('pending', 'in_progress', 'completed', 'transferred', 'out_of_farm'), 
-                  nullable=False, default='pending'),
-        sa.Column('source_pen_id', sa.Integer(), nullable=True),
-        sa.Column('created_at', sa.DateTime(), nullable=False),
-        sa.Column('updated_at', sa.DateTime(), nullable=False),
-        sa.ForeignKeyConstraint(['source_pen_id'], ['pen.id'], ondelete='SET NULL'),
-        sa.PrimaryKeyConstraint('id')
+def create_tables():
+    # Batch 表
+    batches_table = Table(
+        'batches', metadata,
+        Column('id', Integer, primary_key=True),
+        Column('batch_id', String(50), nullable=False, unique=True),
+        Column('quantity', Integer, nullable=False),
+        Column('status', String(20), default="active"),
+        Column('created_at', DateTime, default=datetime.datetime.utcnow),
+        Column('updated_at', DateTime, default=datetime.datetime.utcnow, onupdate=datetime.datetime.utcnow)
     )
     
-    # 2. 为 batch_id 建立唯一索引（提升查询效率）
-    op.create_index('ix_batch_batch_id', 'batch', ['batch_id'], unique=True)
-    
-    # 3. 创建 Event 表
-    op.create_table(
-        'event',
-        sa.Column('id', sa.Integer(), nullable=False),
-        sa.Column('event_type', sa.Enum('transfer', 'death', 'exit', 'vaccination', 'sick', 'treatment', 'feeding', 'cleaning', 'other'), 
-                  nullable=False),
-        sa.Column('timestamp', sa.DateTime(), nullable=False),
-        sa.Column('batch_id', sa.String(length=50), nullable=False),
-        sa.Column('pen_id', sa.Integer(), nullable=True),
-        sa.Column('barn_id', sa.Integer(), nullable=True),
-        sa.Column('description', sa.String(length=500), nullable=True),
-        sa.Column('is_processed', sa.Boolean(), nullable=False, default=False),
-        sa.PrimaryKeyConstraint('id')
+    # Event 表
+    events_table = Table(
+        'events', metadata,
+        Column('id', Integer, primary_key=True),
+        Column('event_type', String(50), nullable=False),
+        Column('timestamp', DateTime, default=datetime.datetime.utcnow),
+        Column('batch_id', Integer, ForeignKey('batches.id'), nullable=True),
+        Column('pen_id', Integer, ForeignKey('pens.id'), nullable=True),
+        Column('barn_id', Integer, ForeignKey('barns.id'), nullable=True),
+        Column('description', String(500))
     )
     
-    # 4. 为 batch_id 建立索引（提升按批次查询性能）
-    op.create_index('ix_event_batch_id', 'event', ['batch_id'], unique=False)
+    # 批次与栏位关联表（多对多）
+    batch_pen_association = Table(
+        'batch_pen', metadata,
+        Column('batch_id', Integer, ForeignKey('batches.id'), primary_key=True),
+        Column('pen_id', Integer, ForeignKey('pens.id'), primary_key=True)
+    )
     
-    # 5. 为 timestamp 建立索引（提升时间范围查询性能）
-    op.create_index('ix_event_timestamp', 'event', ['timestamp'], unique=False)
+    # 创建所有表
+    try:
+        metadata.create_all(engine)
+        print("✅ 批次与事件体系数据库表已成功创建")
+    except Exception as e:
+        print(f"❌ 数据库创建失败: {e}")
 
-
-def downgrade():
-    """
-    回滚操作：删除所有批次与事件相关表（用于版本回退）
-    """
-    op.drop_table('event')
-    op.drop_table('batch')
+if __name__ == "__main__":
+    create_tables()

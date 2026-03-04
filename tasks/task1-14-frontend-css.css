@@ -1,225 +1,324 @@
-/* mms/FieldOps/static/css/styles.css */
+/* mms/FieldOps/static/css/main.css */
+/* FieldOps - 现场管理系统 样式表（已完成） */
 
-/* 通用样式 */
-body {
-    font-family: 'Segoe UI', sans-serif;
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #3498db;
+    --accent-color: #e67e22;
+    --text-color: #333;
+    --light-bg: #f8f9fa;
+    --border-color: #ddd;
+    --success-color: #27ae60;
+    --warning-color: #f39c12;
+    --danger-color: #e74c3c;
+    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+* {
     margin: 0;
     padding: 0;
-    background-color: #121212;
-    color: #e0e0e0;
+    box-sizing: border-box;
 }
 
-.container {
+body {
+    font-family: var(--font-family);
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--light-bg);
+    padding: 0;
+    margin: 0;
+}
+
+header {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    text-align: center;
+    padding: 2rem 1rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+header .subtitle {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+main {
     max-width: 1400px;
-    margin: 0 auto;
+    margin: 2rem auto;
+    padding: 0 1rem;
 }
 
-/* 卡片样式 */
 .card {
-    background-color: #1e1e1e;
-    border: 1px solid #333;
+    background: white;
     border-radius: 12px;
-    padding: 16px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
 }
 
-.card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
-}
-
-/* 标题样式 */
-h1, h2, h3, h4, h5, h6 {
-    font-weight: 600;
-}
-
-h1 {
-    font-size: 1.75rem;
-}
-
-h2 {
+.card h2 {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 1rem;
+    margin: 0;
     font-size: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
 }
 
-h3 {
-    font-size: 1.25rem;
+.tree-container,
+.events-container,
+.batches-container,
+.distribution-panel {
+    padding: 1rem;
 }
 
-/* 按钮样式 */
-button {
-    cursor: pointer;
-    border: none;
-    border-radius: 8px;
-    font-weight: 500;
-    padding: 8px 16px;
-    transition: all 0.2s ease;
+.loading {
+    color: #666;
+    font-style: italic;
 }
 
-button:hover {
-    transform: scale(1.05);
-}
-
-/* 输入框样式 */
-input[type="text"], input[type="number"] {
-    background-color: #2d2d2d;
-    border: 1px solid #444;
+/* 农场结构树样式 */
+.farm-node {
+    margin: 0.5rem 0;
+    padding: 0.75rem;
+    background-color: var(--light-bg);
+    border-left: 4px solid var(--secondary-color);
     border-radius: 6px;
-    padding: 8px 12px;
-    color: #e0e0e0;
-    transition: border-color 0.2s ease;
 }
 
-input[type="text"]:focus, input[type="number"]:focus {
-    outline: none;
-    border-color: #4CAF50;
-    box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.3);
+.farm-name {
+    font-weight: bold;
+    color: var(--primary-color);
 }
 
-/* 事件流滚动条样式 */
-#events-scroll {
-    background-color: #1a1a1a;
-    border: 1px solid #333;
-    border-radius: 8px;
-    font-family: 'Courier New', monospace;
-    font-size: 0.9rem;
-    line-height: 1.5;
+.barn-node {
+    margin: 0.5rem 0 0.5rem 1rem;
+    padding: 0.5rem;
+    background-color: #ecf0f1;
+    border-left: 4px solid var(--accent-color);
+    border-radius: 6px;
 }
 
-.event-item {
-    padding: 8px;
-    border-bottom: 1px solid #333;
-    color: #ccc;
+.barn-name {
+    font-weight: bold;
+    color: var(--accent-color);
 }
 
-.event-item:last-child {
-    border-bottom: none;
-}
-
-.event-type-transfer {
-    color: #4CAF50;
-}
-
-.event-type-death {
-    color: #f44336;
-}
-
-.event-type-vaccination {
-    color: #2196F3;
-}
-
-.event-type-sick {
-    color: #ff9800;
-}
-
-.event-type-treatment {
-    color: #9c27b0;
-}
-
-/* 响应式网格 */
-@media (max-width: 768px) {
-    .grid-cols-1 md\:grid-cols-2 lg\:grid-cols-3 {
-        grid-template-columns: repeat(1, minmax(0, 1fr));
-    }
-}
-
-@media (max-width: 480px) {
-    .grid-cols-1 md\:grid-cols-2 lg\:grid-cols-3 {
-        grid-template-columns: repeat(1, minmax(0, 1fr));
-    }
-    
-    .container {
-        padding: 12px;
-    }
-}
-
-/* 透明背景卡片（用于农场结构） */
-.farm-card {
-    background-color: rgba(30, 30, 30, 0.8);
-    backdrop-filter: blur(10px);
-}
-
-.barn-card {
-    background-color: rgba(30, 30, 30, 0.7);
-}
-
-.pen-card {
-    background-color: rgba(30, 30, 30, 0.6);
-}
-
-/* 动画效果 */
-.fade-in {
-    animation: fadeIn 0.5s ease-in-out;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* 指令控制区样式 */
-#controls {
-    margin-top: 24px;
-}
-
-#controls label {
-    display: block;
-    margin-bottom: 4px;
+.pen-node {
+    margin: 0.3rem 0 0.3rem 2rem;
+    padding: 0.3rem;
+    background-color: #fff;
+    border-left: 4px solid var(--primary-color);
+    border-radius: 6px;
     font-size: 0.9rem;
 }
 
-/* 按钮图标 */
-button svg {
-    width: 16px;
-    height: 16px;
+.pen-status {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
     margin-right: 6px;
 }
 
-/* 网格布局 */
-.grid {
-    display: grid;
+.status-empty { background-color: #bdc3c7; }
+.status-occupied { background-color: var(--success-color); }
+.status-reserved { background-color: var(--warning-color); }
+.status-maintenance { background-color: var(--danger-color); }
+
+/* 事件流样式 */
+.event-item {
+    padding: 0.75rem;
+    border-bottom: 1px dashed var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
 }
 
-.grid-cols-1 {
-    grid-template-columns: repeat(1, minmax(0, 1fr));
+.event-type {
+    font-weight: bold;
+    color: var(--secondary-color);
 }
 
-.grid-cols-2 {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+.event-time {
+    color: #666;
+    font-size: 0.8rem;
 }
 
-.grid-cols-3 {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+.event-description {
+    color: #333;
+    margin-top: 0.2rem;
+    font-size: 0.85rem;
 }
 
-/* 响应式调整 */
-@media (max-width: 1024px) {
-    .grid-cols-3 {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
+/* 批次列表样式 */
+.batch-item {
+    padding: 0.75rem;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
+.batch-id {
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.batch-status {
+    font-size: 0.9rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: 12px;
+    background-color: #f0f0f0;
+    color: var(--primary-color);
+}
+
+.status-active { background-color: #d5f5e3; color: #27ae60; }
+.status-transferring { background-color: #fff3cd; color: #f39c12; }
+.status-finished { background-color: #e6e6e6; color: #666; }
+.status-dead { background-color: #f9dede; color: #e74c3c; }
+
+/* 分栏控制面板 */
+#distribution-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+#batch-id-input {
+    padding: 0.75rem;
+    font-size: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    width: 100%;
+}
+
+#distribute-btn {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#distribute-btn:hover {
+    background-color: #2980b9;
+}
+
+#distribution-result {
+    margin-top: 0.5rem;
+    padding: 0.75rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+}
+
+.result-success {
+    background-color: #d5f5e3;
+    color: #27ae60;
+}
+
+.result-error {
+    background-color: #f9dede;
+    color: #e74c3c;
+}
+
+/* 响应式设计 */
 @media (max-width: 768px) {
-    .grid-cols-2 {
-        grid-template-columns: repeat(1, minmax(0, 1fr));
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    main {
+        padding: 0 0.5rem;
+    }
+    
+    .card {
+        margin-bottom: 1rem;
+    }
+    
+    .event-item,
+    .batch-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .event-time,
+    .batch-status {
+        margin-top: 0.3rem;
     }
 }
 
-/* 滚动条自定义 */
+/* 滚动条样式 */
 ::-webkit-scrollbar {
     width: 8px;
     height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-    background: #1a1a1a;
+    background: #f1f1f1;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #444;
+    background: #c1c1c1;
     border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #666;
+    background: #a8a8a8;
+}
+
+footer {
+    text-align: center;
+    padding: 1.5rem;
+    background-color: var(--primary-color);
+    color: white;
+    font-size: 0.9rem;
+    margin-top: 2rem;
+    border-top: 1px solid var(--border-color);
+}
+
+/* 动画效果 */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* 高对比度模式支持 */
+@media (prefers-contrast: high) {
+    body {
+        background-color: #000;
+        color: #fff;
+    }
+    
+    .card {
+        background-color: #333;
+        border-color: #666;
+    }
+    
+    .card h2 {
+        background-color: #111;
+    }
+}
+
+/* 减少动画偏好 */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
 }

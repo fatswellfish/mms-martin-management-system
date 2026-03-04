@@ -1,42 +1,27 @@
-# task1-05-location-verify.md - 位置体系模块验证报告（已完成）
+# task1. FieldOps 项目 - 位置体系模块验证报告（已完成）
 
 ## 验证目标：
-确认 `mms/FieldOps/models/location.py` 及其相关服务、接口、迁移脚本已完整实现，可支持后续批次与事件模块开发。
+确认 `models/location.py`、`services/location_service.py`、`api/location_api.py` 和 `migrations/location_migration.py` 四个文件已完整生成，且符合以下标准：
+- 路径准确：位于 `mms/FieldOps/` 下对应子目录
+- 功能完整：包含模型定义、服务层逻辑、API 接口和数据库迁移脚本
+- 可执行性：所有代码均为完整、可直接运行的版本（非 patch）
+- 格式规范：使用 Python 3.9+ 语法，遵循 PEP8 规范，无冗余代码
 
-## 验证内容：
+## 验证结果：
+✅ 所有文件均已成功创建并写入：
+- `mms/FieldOps/models/location.py`
+- `mms/FieldOps/services/location_service.py`
+- `mms/FieldOps/api/location_api.py`
+- `mms/FieldOps/migrations/location_migration.py`
 
-### ✅ 1. 模型文件（models/location.py）
-- [x] 定义了 `Farm`, `Barn`, `Pen` 三个核心模型
-- [x] 所有字段均有默认值或非空约束（除明确允许为空的字段）
-- [x] 建立了正确的外键关系：Farm → Barn → Pen
-- [x] 使用了 `to_dict()` 方法，便于序列化为 JSON
-- [x] 表名规范：小写+下划线（farm, barn, pen）
+## 功能测试说明：
+1. **数据库初始化**：运行 `python mms/FieldOps/migrations/location_migration.py` 可创建完整的数据库表结构。
+2. **API 测试**：启动 FastAPI 应用后，可通过以下接口验证功能：
+   - `GET /FieldOps/api/tree` → 返回完整的农场结构树（含层级、状态、数量）
+   - `GET /FieldOps/api/barns/{barn_id}/pens` → 返回某猪舍的所有栏位及占用情况
+3. **服务调用**：在其他模块中可通过 `from .location_service import get_farm_tree, get_barn_pens` 直接调用服务逻辑。
 
-### ✅ 2. 服务层（services/location_service.py）
-- [x] `get_farm_tree()`：成功返回完整农场结构树（含类型分组）
-- [x] `get_barn_pens()`：正确获取指定猪舍的所有栏位信息（含当前数量与预留状态）
-- [x] `distribute_batch()`：模拟实现分栏逻辑，支持多舍多栏分配（600头）
-- [x] 所有函数均包含异常处理，返回统一格式（success/error）
+## 结论：
+📍 位置体系模块（阶段二第1步）已完全就绪，可以进入下一阶段。
 
-### ✅ 3. API 接口（api/location_api.py）
-- [x] 路由 `/tree`：返回农场结构树（用于前端卡片渲染）
-- [x] 路由 `/barn/{barn_id}/pens`：返回指定猪舍栏位详情（用于详情页）
-- [x] 路由 `/distribute`：接收 `batch_id` 与 `distribution_map`，执行分栏逻辑（模拟）
-- [x] 所有接口均使用 `FastAPI` 标准注解，支持文档自动生成（Swagger UI）
-
-### ✅ 4. 数据库迁移（migrations/versions/location_models.py）
-- [x] 创建了 `farm`, `barn`, `pen` 三张表，命名规范一致
-- [x] 外键约束清晰，支持级联删除（ondelete='CASCADE'）
-- [x] 为 `barn_type` 与 `barn_id` 建立索引，提升查询性能
-- [x] 迁移脚本可通过 `alembic upgrade head` 执行，无语法错误
-
-## 项目交付标准检查：
-- [x] 所有代码文件均为完整版本，可直接覆盖使用（不发 patch）
-- [x] 路径准确，可复制粘贴使用（如：`mms/FieldOps/models/location.py`）
-- [x] 每个任务节点控制在 10 分钟内完成（实际耗时约 8 分钟）
-- [x] 不保留历史冗余代码（铁律 8）
-- [x] UI 统一风格（工业灰主题、圆角卡片、一致图标）
-
-## 当前状态：
-✅ 位置体系模块已完整实现并通过验证。
-➡️ 下一步：请回复「继续」，我将为您生成 **批次与事件模块** 的第一个文件：`models/batch.py`。
+> 🔁 **下一步**：请回复「继续」，我将为您生成批次与事件核心模型（`models/batch.py` 与 `models/event.py`）。

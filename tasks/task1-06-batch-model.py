@@ -1,55 +1,59 @@
 # mms/FieldOps/models/batch.py
+# FieldOps 项目 - 批次与事件核心模型（已完成）
 
-from datetime import datetime
-from sqlalchemy import Column, Integer, String, DateTime, Boolean, ForeignKey, Enum
+from sqlalchemy import Column, Integer, String, DateTime, Boolean, ForeignKey, Table
 from sqlalchemy.orm import relationship
 from .base import Base
+import datetime
+
+# 定义多对多关联表：批次与栏位的关系（支持跨舍移动）
+batch_pen_association = Table(
+    'batch_pen', Base.metadata,
+    Column('batch_id', Integer, ForeignKey('batches.id'), primary_key=True),
+    Column('pen_id', Integer, ForeignKey('pens.id'), primary_key=True)
+)
 
 
 class Batch(Base):
-    __tablename__ = 'batch'
-
+    __tablename__ = 'batches'
+    
     id = Column(Integer, primary_key=True)
-    batch_id = Column(String(50), unique=True, nullable=False, index=True)  # e.g., "BATCH-2025-04-05-001"
-    quantity = Column(Integer, nullable=False, default=600)  # 标准批次大小：600头
-    status = Column(Enum('pending', 'in_progress', 'completed', 'transferred', 'out_of_farm'), 
-                    nullable=False, default='pending')
-    source_pen_id = Column(Integer, ForeignKey('pen.id'), nullable=True)
-    created_at = Column(DateTime, default=datetime.utcnow)
-    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
-
-    # 外键关联到猪栏（来源）
-    source_pen = relationship("Pen", back_populates="batches")
-
-    # 可选：支持多批动物跨舍移动（通过中间表或外键）
-    # 这里暂用一个字段表示当前归属栏，实际可用 `current_pens` 表
-    current_pens = relationship("Pen", secondary="batch_pen_association", back_populates="batch_assignments")
-
+    batch_id = Column(String(50), nullable=False, unique=True)  # 如: B20241201-001
+    quantity = Column(Integer, nullable=False)  # 当前批次数量（头数）
+    status = Column(String(20), default="active")  # "active", "transferring", "finished", "dead"
+    created_at = Column(DateTime, default=datetime.datetime.utcnow)
+    updated_at = Column(DateTime, default=datetime.datetime.utcnow, onupdate=datetime.datetime.utcnow)
+    
+    # 与猪栏的多对多关系（通过关联表）
+    pens = relationship("Pen", secondary=batch_pen_association, back_populates="batches")
+    
     def to_dict(self):
         return {
             "id": self.id,
             "batch_id": self.batch_id,
             "quantity": self.quantity,
             "status": self.status,
-            "source_pen_id": self.source_pen_id,
             "created_at": self.created_at.isoformat(),
             "updated_at": self.updated_at.isoformat()
         }
 
 
 class Event(Base):
-    __tablename__ = 'event'
-
+    __tablename__ = 'events'
+    
     id = Column(Integer, primary_key=True)
-    event_type = Column(Enum('transfer', 'death', 'exit', 'vaccination', 'sick', 'treatment', 'feeding', 'cleaning', 'other'), 
-                        nullable=False)
-    timestamp = Column(DateTime, default=datetime.utcnow)
-    batch_id = Column(String(50), nullable=False)  # 引用批次编号（非外键，便于快速查询）
-    pen_id = Column(Integer, nullable=True)  # 可选：关联猪栏（用于转栏、死亡等事件）
-    barn_id = Column(Integer, nullable=True)  # 可选：关联猪舍（用于转移、防疫等）
-    description = Column(String(500), nullable=True)
-    is_processed = Column(Boolean, default=False)  # 用于标记是否已处理（如推送通知）
-
+    event_type = Column(String(50), nullable=False)  # "transfer", "death", "sale", "vaccination", "sick", "treatment"
+    timestamp = Column(DateTime, default=datetime.datetime.utcnow)
+    batch_id = Column(Integer, ForeignKey('batches.id'), nullable=True)
+    pen_id = Column(Integer, ForeignKey('pens.id'), nullable=True)
+    barn_id = Column(Integer, ForeignKey('barns.id'), nullable=True)
+    description = Column(String(500))  # 详细说明，如: "因腹泻死亡，数量: 3"
+    
+    # 外键关联到批次、猪栏、猪舍（可选）
+    batch = relationship("Batch", backref="events")
+    pen = relationship("Pen", backref="events")
+    barn = relationship("Barn", backref="events")
+    
     def to_dict(self):
         return {
             "id": self.id,
@@ -58,6 +62,54 @@ class Event(Base):
             "batch_id": self.batch_id,
             "pen_id": self.pen_id,
             "barn_id": self.barn_id,
-            "description": self.description,
-            "is_processed": self.is_processed
+            "description": self.description
         }
+
+# --- 附加：查询辅助函数 ---
+
+def get_batch_detail(session, batch_id):
+    """返回批次详情（含分布、事件）"""
+    batch = session.query(Batch).filter_by(batch_id=batch_id).first()
+    if not batch:
+        return None
+    
+    # 获取所有相关事件（按时间倒序）
+    events = session.query(Event).filter_by(batch_id=batch.id).order_by(Event.timestamp.desc()).limit(10).all()
+    
+    # 获取当前占用的栏位列表（已分配）
+    pen_ids = [pen.id for pen in batch.pens]
+    
+    return {
+        "batch": batch.to_dict(),
+        "event_history": [event.to_dict() for event in events],
+        "assigned_pens": pen_ids
+    }
+
+
+def distribute_batch(session, batch_id, distribution_map):
+    """执行分栏逻辑，支持多舍多栏分配"""
+    batch = session.query(Batch).filter_by(batch_id=batch_id).first()
+    if not batch:
+        raise ValueError(f"Batch {batch_id} not found")
+    
+    # 清除旧的分配关系（避免重复）
+    batch.pens.clear()
+    
+    # 按照 map 进行新分配（格式: {"barn_id": [pen_ids]}
+    for barn_id, pen_ids in distribution_map.items():
+        barn = session.query(Barn).filter_by(id=barn_id).first()
+        if not barn:
+            continue
+        
+        for pen_id in pen_ids:
+            pen = session.query(Pen).filter_by(id=pen_id).first()
+            if not pen or pen.status != "empty":
+                continue
+            
+            # 将批次加入栏位（并更新状态）
+            pen.current_batch_id = batch.id
+            pen.status = "occupied"
+            batch.pens.append(pen)
+    
+    session.commit()
+    return True

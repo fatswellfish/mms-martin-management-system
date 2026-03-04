@@ -1,21 +1,12 @@
-# mms/FieldOps/api/location_api.py
-# FieldOps 项目 - 位置相关 API 接口（已完成）
+# mms/FieldOps/api/pens_api.py
+# FieldOps 项目 - 猪舍栏位相关 API 接口（已完成）
 
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from .location_service import get_farm_tree, get_barn_pens
+from .location_model import get_barn_pens
 from ..database import get_db
 
 router = APIRouter()
-
-@router.get("/tree")
-async def get_farm_structure(db: Session = Depends(get_db)):
-    """返回完整的农场结构树，用于前端渲染"""
-    try:
-        tree = get_farm_tree(db)
-        return {"success": True, "data": tree}
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Internal server error: {str(e)}")
 
 @router.get("/barns/{barn_id}/pens")
 async def get_barn_pens(barn_id: int, db: Session = Depends(get_db)):
