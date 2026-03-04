@@ -1,0 +1,93 @@
+{% extends "base_field_ops.html" %}
+
+{% block title %}FieldOps - 位置结构图{% endblock %}
+
+{% block content %}
+<div class="bg-white rounded-lg shadow p-6">
+    <h2 class="text-xl font-semibold text-gray-800 mb-4">养殖场位置结构</h2>
+    
+    <div id="tree-container" hx-get="/api/tree" hx-trigger="load" hx-swap="innerHTML" hx-target="#tree-container" class="space-y-6">
+        <p class="text-sm text-gray-500">正在加载结构...</p>
+    </div>
+</div>
+
+<!-- 动态脚本：渲染树形结构 -->
+<script>
+    document.addEventListener("htmx:afterSwap", function(evt) {
+        if (evt.detail.target.id === "tree-container") {
+            const treeData = evt.detail.xhr.response;
+            if (treeData && treeData.tree) {
+                const container = document.getElementById("tree-container");
+                container.innerHTML = '';
+                
+                treeData.tree.forEach(category => {
+                    const categoryDiv = document.createElement("div");
+                    categoryDiv.className = "border-l-2 border-blue-300 pl-4 mb-4";
+                    
+                    // 类别标题
+                    const header = document.createElement("div");
+                    header.className = "bg-blue-100 text-blue-800 font-medium py-2 px-3 rounded-t-lg flex justify-between items-center";
+                    header.innerHTML = `
+                        <span>${category.name}</span>
+                        <span class="text-xs bg-blue-200 text-blue-700 px-2 py-1 rounded">${category.barns.length} 舍</span>
+                    `;
+                    
+                    // 舍列表
+                    const barnList = document.createElement("div");
+                    barnList.className = "space-y-2";
+                    
+                    category.barns.forEach(barn => {
+                        const barnDiv = document.createElement("div");
+                        barnDiv.className = "bg-white border border-gray-200 rounded p-3 hover:shadow-sm transition";
+                        
+                        const barnHeader = document.createElement("div");
+                        barnHeader.className = "font-medium text-gray-800 mb-1";
+                        barnHeader.textContent = barn.name;
+                        
+                        const barnInfo = document.createElement("div");
+                        barnInfo.className = "text-xs text-gray-500 mb-2";
+                        barnInfo.textContent = `类型: ${barn.barn_type}, 栏位数: ${barn.pens.length}`;
+                        
+                        // 栏位列表（可展开）
+                        const penList = document.createElement("div");
+                        penList.className = "space-y-1 mt-2";
+                        
+                        barn.pens.forEach(pen => {
+                            const penDiv = document.createElement("div");
+                            penDiv.className = `flex justify-between items-center text-xs py-1 px-2 rounded ${pen.is_reserved ? 'bg-red-50 text-red-600' : 'bg-green-50 text-green-600'}`;
+                            
+                            const penName = document.createElement("span");
+                            penName.textContent = pen.name;
+                            
+                            const penStatus = document.createElement("span");
+                            penStatus.textContent = `容量: ${pen.capacity}`;
+                            
+                            penDiv.appendChild(penName);
+                            penDiv.appendChild(penStatus);
+                            
+                            // 如果有当前批次，显示信息
+                            if (pen.current_batch) {
+                                const batchTag = document.createElement("span");
+                                batchTag.className = "ml-2 bg-blue-100 text-blue-800 text-xs px-1 py-0.5 rounded";
+                                batchTag.textContent = `${pen.current_batch.batch_code} (${pen.current_batch.quantity})`;
+                                penDiv.appendChild(batchTag);
+                            }
+                            
+                            penList.appendChild(penDiv);
+                        });
+                        
+                        barnDiv.appendChild(barnHeader);
+                        barnDiv.appendChild(barnInfo);
+                        barnDiv.appendChild(penList);
+                        barnList.appendChild(barnDiv);
+                    });
+                    
+                    categoryDiv.appendChild(header);
+                    categoryDiv.appendChild(barnList);
+                    container.appendChild(categoryDiv);
+                });
+            }
+        }
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,4523 @@
+/* 通用样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f7f9fc;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* 卡片组件 */
+.bg-white {
+    background-color: #ffffff;
+}
+
+.rounded-lg {
+    border-radius: 0.5rem;
+}
+
+.shadow {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+.p-4 {
+    padding: 1rem;
+}
+
+.p-6 {
+    padding: 1.5rem;
+}
+
+/* 按钮 */
+.px-3 {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+}
+
+.py-1 {
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+}
+
+.rounded {
+    border-radius: 0.25rem;
+}
+
+.transition {
+    transition: all 0.2s ease-in-out;
+}
+
+.hover\:bg-gray-200:hover {
+    background-color: #e5e7eb;
+}
+
+.hover\:bg-gray-300:hover {
+    background-color: #d1d5db;
+}
+
+.hover\:bg-blue-700:hover {
+    background-color: #2563eb;
+}
+
+.hover\:bg-blue-800:hover {
+    background-color: #1d4ed8;
+}
+
+.hover\:shadow-md:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* 文本与标题 */
+.text-xl {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+}
+
+.text-lg {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+}
+
+.text-sm {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+}
+
+.text-xs {
+    font-size: 0.75rem;
+    line-height: 1rem;
+}
+
+.font-medium {
+    font-weight: 500;
+}
+
+.font-semibold {
+    font-weight: 600;
+}
+
+.text-gray-800 {
+    color: #1f2937;
+}
+
+.text-gray-700 {
+    color: #374151;
+}
+
+.text-gray-600 {
+    color: #4b5563;
+}
+
+.text-gray-500 {
+    color: #6b7280;
+}
+
+.text-gray-400 {
+    color: #9ca3af;
+}
+
+.text-blue-600 {
+    color: #2563eb;
+}
+
+.text-blue-700 {
+    color: #1d4ed8;
+}
+
+.text-blue-800 {
+    color: #1e40af;
+}
+
+.text-green-600 {
+    color: #16a34a;
+}
+
+.text-orange-600 {
+    color: #ea580c;
+}
+
+.text-red-600 {
+    color: #dc2626;
+}
+
+.text-gray-500 {
+    color: #6b7280;
+}
+
+/* 蓝色主题 */
+.bg-blue-600 {
+    background-color: #2563eb;
+}
+
+.bg-blue-50 {
+    background-color: #eff6ff;
+}
+
+.bg-blue-100 {
+    background-color: #dbeafe;
+}
+
+.bg-blue-200 {
+    background-color: #bfdbfe;
+}
+
+/* 绿色主题 */
+.bg-green-50 {
+    background-color: #f0fdf4;
+}
+
+.bg-green-100 {
+    background-color: #dcfce7;
+}
+
+.bg-green-200 {
+    background-color: #bbf7d0;
+}
+
+/* 红色主题 */
+.bg-red-50 {
+    background-color: #fef2f2;
+}
+
+.bg-red-100 {
+    background-color: #fee2e2;
+}
+
+/* 灰色主题 */
+.bg-gray-50 {
+    background-color: #f9fafb;
+}
+
+.bg-gray-800 {
+    background-color: #111827;
+}
+
+/* 间距 */
+.mt-4 {
+    margin-top: 1rem;
+}
+
+.mb-4 {
+    margin-bottom: 1rem;
+}
+
+.mt-6 {
+    margin-top: 1.5rem;
+}
+
+.mb-6 {
+    margin-bottom: 1.5rem;
+}
+
+.mt-2 {
+    margin-top: 0.5rem;
+}
+
+.mb-2 {
+    margin-bottom: 0.5rem;
+}
+
+.mr-2 {
+    margin-right: 0.5rem;
+}
+
+.ml-2 {
+    margin-left: 0.5rem;
+}
+
+/* 表格与列表 */
+.space-y-2 > * + * {
+    margin-top: 0.5rem;
+}
+
+.space-y-3 > * + * {
+    margin-top: 0.75rem;
+}
+
+.space-y-4 > * + * {
+    margin-top: 1rem;
+}
+
+.space-y-6 > * + * {
+    margin-top: 1.5rem;
+}
+
+/* 网格布局 */
+.grid {
+    display: grid;
+}
+
+.gap-6 {
+    gap: 1.5rem;
+}
+
+.gap-3 {
+    gap: 0.75rem;
+}
+
+.gap-2 {
+    gap: 0.5rem;
+}
+
+.grid-cols-1 {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+.grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+/* 滚动区域 */
+.max-h-64 {
+    max-height: 16rem;
+}
+
+.max-h-48 {
+    max-height: 12rem;
+}
+
+.overflow-y-auto {
+    overflow-y: auto;
+}
+
+/* 输入框 */
+.border {
+    border-width: 1px;
+}
+
+.border-gray-300 {
+    border-color: #d1d5db;
+}
+
+.rounded-md {
+    border-radius: 0.375rem;
+}
+
+.focus\\:outline-none:focus {
+    outline: none;
+}
+
+.focus\\:ring-2:focus {
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.5);
+}
+
+.focus\\:ring-blue-500:focus {
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.5);
+}
+
+/* 阴影 */
+.shadow-md {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* 按钮状态 */
+.bg-gray-200 {
+    background-color: #e5e7eb;
+}
+
+.bg-blue-600 {
+    background-color: #2563eb;
+}
+
+.bg-blue-700 {
+    background-color: #1d4ed8;
+}
+
+.bg-blue-800 {
+    background-color: #1e40af;
+}
+
+/* 悬停效果 */
+.hover\:hover {
+    cursor: pointer;
+}
+
+/* 页脚 */
+.text-center {
+    text-align: center;
+}
+
+/* 模态框 */
+.show {
+    display: block;
+}
+
+/* 图标 */
+.w-3 {
+    width: 0.75rem;
+}
+
+.h-3 {
+    height: 0.75rem;
+}
+
+.w-5 {
+    width: 1.25rem;
+}
+
+.h-5 {
+    height: 1.25rem;
+}
+
+/* 响应式 */
+@media (min-width: 768px) {
+    .md\:grid-cols-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    
+    .md\:grid-cols-3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 1024px) {
+    .lg\:grid-cols-3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+/* 事件颜色 */
+.event-color-dead {
+    color: #d32f2f;
+}
+
+.event-color-sale {
+    color: #1976d2;
+}
+
+.event-color-transfer {
+    color: #4caf50;
+}
+
+.event-color-vaccination {
+    color: #ff9800;
+}
+
+.event-color-illness-mild {
+    color: #ffeb3b;
+}
+
+.event-color-illness-severe {
+    color: #f44336;
+}
+
+.event-color-treatment {
+    color: #2196f3;
+}
+
+.event-color-other {
+    color: #9e9e9e;
+}
+
+/* 猪舍状态 */
+.barn-status-active {
+    color: #16a34a;
+}
+
+.barn-status-reserved {
+    color: #dc2626;
+}
+
+/* 栏位状态 */
+.pen-status-full {
+    color: #16a34a;
+}
+
+.pen-status-empty {
+    color: #9ca3af;
+}
+
+.pen-status-reserved {
+    color: #dc2626;
+}
+
+/* 批次状态 */
+.batch-status-active {
+    color: #16a34a;
+}
+
+.batch-status-sold {
+    color: #1976d2;
+}
+
+.batch-status-dead {
+    color: #dc2626;
+}
+
+.batch-status-transferred {
+    color: #4caf50;
+}
+
+/* 按钮状态 */
+.btn-primary {
+    background-color: #2563eb;
+    color: white;
+}
+
+.btn-secondary {
+    background-color: #e5e7eb;
+    color: #1f2937;
+}
+
+.btn-success {
+    background-color: #16a34a;
+    color: white;
+}
+
+.btn-danger {
+    background-color: #dc2626;
+    color: white;
+}
+
+/* 页脚 */
+footer {
+    background-color: #111827;
+    color: #9ca3af;
+    text-align: center;
+    padding: 1rem;
+    font-size: 0.875rem;
+}
+
+/* 网格布局 */
+.grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+/* 滚动条 */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+/* 透明背景 */
+.bg-transparent {
+    background-color: transparent;
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 0.5rem;
+    }
+    
+    .text-xl {
+        font-size: 1.125rem;
+        line-height: 1.5rem;
+    }
+    
+    .text-lg {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+    
+    .text-sm {
+        font-size: 0.75rem;
+        line-height: 1rem;
+    }
+    
+    .p-4 {
+        padding: 1rem;
+    }
+    
+    .p-6 {
+        padding: 1.5rem;
+    }
+    
+    .px-3 {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+    }
+    
+    .py-1 {
+        padding-top: 0.25rem;
+        padding-bottom: 0.25rem;
+    }
+    
+    .rounded-lg {
+        border-radius: 0.5rem;
+    }
+    
+    .shadow {
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+}
+
+/* 悬停效果 */
+.hover\:hover {
+    cursor: pointer;
+}
+
+/* 透明背景 */
+.bg-transparent {
+    background: transparent;
+}
+
+/* 事件卡片 */
+.event-card {
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    padding: 0.75rem;
+    margin-bottom: 0.5rem;
+    background-color: #ffffff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.event-card:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.event-card-header {
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.event-card-body {
+    font-size: 0.875rem;
+    color: #6b7280;
+}
+
+.event-card-footer {
+    font-size: 0.75rem;
+    color: #9ca3af;
+    margin-top: 0.25rem;
+}
+
+/* 模态框 */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #ffffff;
+    margin: 10% auto;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    width: 80%;
+    max-width: 600px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.modal-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.modal-close {
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    color: #9ca3af;
+}
+
+.modal-close:hover {
+    color: #6b7280;
+}
+
+.modal-body {
+    margin-bottom: 1.5rem;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+}
+
+.modal-btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    font-size: 0.875rem;
+}
+
+.modal-btn-primary {
+    background-color: #2563eb;
+    color: white;
+}
+
+.modal-btn-secondary {
+    background-color: #e5e7eb;
+    color: #1f2937;
+}
+
+.modal-btn:hover {
+    opacity: 0.9;
+}
+
+/* 猪舍卡片 */
+.barn-card {
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.barn-card:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.barn-card-header {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.barn-card-body {
+    font-size: 0.875rem;
+    color: #6b7280;
+}
+
+.barn-card-footer {
+    font-size: 0.75rem;
+    color: #9ca3af;
+    margin-top: 0.5rem;
+}
+
+/* 栏位卡片 */
+.pen-card {
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.pen-card:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.pen-card-header {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.pen-card-body {
+    font-size: 0.875rem;
+    color: #6b7280;
+}
+
+.pen-card-footer {
+    font-size: 0.75rem;
+    color: #9ca3af;
+    margin-top: 0.5rem;
+}
+
+/* 批次卡片 */
+.batch-card {
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.batch-card:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.batch-card-header {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.batch-card-body {
+    font-size: 0.875rem;
+    color: #6b7280;
+}
+
+.batch-card-footer {
+    font-size: 0.75rem;
+    color: #9ca3af;
+    margin-top: 0.5rem;
+}
+
+/* 事件滚动栏 */
+.event-scroller {
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.event-scroller-header {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.event-scroller-body {
+    font-size: 0.875rem;
+    color: #6b7280;
+}
+
+.event-scroller-footer {
+    font-size: 0.75rem;
+    color: #9ca3af;
+    margin-top: 0.5rem;
+}
+
+/* 导航栏 */
+.navbar {
+    background-color: #2563eb;
+    color: white;
+    padding: 0.5rem 1rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.navbar-nav {
+    display: flex;
+    gap: 1rem;
+}
+
+.navbar-link {
+    color: white;
+    text-decoration: none;
+    font-size: 0.875rem;
+}
+
+.navbar-link:hover {
+    text-decoration: underline;
+}
+
+/* 页脚 */
+.footer {
+    background-color: #111827;
+    color: #9ca3af;
+    text-align: center;
+    padding: 1rem;
+    font-size: 0.875rem;
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 0.5rem;
+    }
+    
+    .navbar-brand {
+        font-size: 1.125rem;
+    }
+    
+    .navbar-nav {
+        gap: 0.5rem;
+    }
+    
+    .navbar-link {
+        font-size: 0.75rem;
+    }
+}
+
+/* 事件颜色映射 */
+.event-color-death {
+    color: #d32f2f;
+}
+
+.event-color-sale {
+    color: #1976d2;
+}
+
+.event-color-transfer {
+    color: #4caf50;
+}
+
+.event-color-vaccination {
+    color: #ff9800;
+}
+
+.event-color-illness-mild {
+    color: #ffeb3b;
+}
+
+.event-color-illness-severe {
+    color: #f44336;
+}
+
+.event-color-treatment {
+    color: #2196f3;
+}
+
+.event-color-other {
+    color: #9e9e9e;
+}
+
+/* 事件卡片颜色 */
+.event-card-death {
+    border-color: #d32f2f;
+}
+
+.event-card-sale {
+    border-color: #1976d2;
+}
+
+.event-card-transfer {
+    border-color: #4caf50;
+}
+
+.event-card-vaccination {
+    border-color: #ff9800;
+}
+
+.event-card-illness-mild {
+    border-color: #ffeb3b;
+}
+
+.event-card-illness-severe {
+    border-color: #f44336;
+}
+
+.event-card-treatment {
+    border-color: #2196f3;
+}
+
+.event-card-other {
+    border-color: #9e9e9e;
+}
+
+/* 事件卡片背景 */
+.event-card-bg-death {
+    background-color: #fdf2f2;
+}
+
+.event-card-bg-sale {
+    background-color: #f0f9ff;
+}
+
+.event-card-bg-transfer {
+    background-color: #f0fdf4;
+}
+
+.event-card-bg-vaccination {
+    background-color: #fff8f0;
+}
+
+.event-card-bg-illness-mild {
+    background-color: #fffdf0;
+}
+
+.event-card-bg-illness-severe {
+    background-color: #fdf2f2;
+}
+
+.event-card-bg-treatment {
+    background-color: #f0f9ff;
+}
+
+.event-card-bg-other {
+    background-color: #f9fafb;
+}
+
+/* 事件卡片文本 */
+.event-card-text-death {
+    color: #d32f2f;
+}
+
+.event-card-text-sale {
+    color: #1976d2;
+}
+
+.event-card-text-transfer {
+    color: #4caf50;
+}
+
+.event-card-text-vaccination {
+    color: #ff9800;
+}
+
+.event-card-text-illness-mild {
+    color: #ffeb3b;
+}
+
+.event-card-text-illness-severe {
+    color: #f44336;
+}
+
+.event-card-text-treatment {
+    color: #2196f3;
+}
+
+.event-card-text-other {
+    color: #9e9e9e;
+}
+
+/* 事件卡片图标 */
+.event-card-icon-death {
+    color: #d32f2f;
+}
+
+.event-card-icon-sale {
+    color: #1976d2;
+}
+
+.event-card-icon-transfer {
+    color: #4caf50;
+}
+
+.event-card-icon-vaccination {
+    color: #ff9800;
+}
+
+.event-card-icon-illness-mild {
+    color: #ffeb3b;
+}
+
+.event-card-icon-illness-severe {
+    color: #f44336;
+}
+
+.event-card-icon-treatment {
+    color: #2196f3;
+}
+
+.event-card-icon-other {
+    color: #9e9e9e;
+}
+
+/* 事件卡片阴影 */
+.event-card-shadow-death {
+    box-shadow: 0 1px 3px rgba(211, 47, 47, 0.1);
+}
+
+.event-card-shadow-sale {
+    box-shadow: 0 1px 3px rgba(25, 118, 210, 0.1);
+}
+
+.event-card-shadow-transfer {
+    box-shadow: 0 1px 3px rgba(76, 175, 80, 0.1);
+}
+
+.event-card-shadow-vaccination {
+    box-shadow: 0 1px 3px rgba(255, 152, 0, 0.1);
+}
+
+.event-card-shadow-illness-mild {
+    box-shadow: 0 1px 3px rgba(255, 235, 59, 0.1);
+}
+
+.event-card-shadow-illness-severe {
+    box-shadow: 0 1px 3px rgba(244, 67, 54, 0.1);
+}
+
+.event-card-shadow-treatment {
+    box-shadow: 0 1px 3px rgba(33, 149, 243, 0.1);
+}
+
+.event-card-shadow-other {
+    box-shadow: 0 1px 3px rgba(158, 158, 158, 0.1);
+}
+
+/* 事件卡片动画 */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.event-card-fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* 事件卡片过渡 */
+.event-card-transition {
+    transition: all 0.2s ease-in-out;
+}
+
+/* 事件卡片缩放 */
+.event-card-scale {
+    transform: scale(1);
+}
+
+.event-card-scale:hover {
+    transform: scale(1.05);
+}
+
+/* 事件卡片旋转 */
+.event-card-rotate {
+    transform: rotate(0deg);
+}
+
+.event-card-rotate:hover {
+    transform: rotate(360deg);
+}
+
+/* 事件卡片翻转 */
+.event-card-flip {
+    transform: rotateY(0deg);
+}
+
+.event-card-flip:hover {
+    transform: rotateY(180deg);
+}
+
+/* 事件卡片浮起 */
+.event-card-hover {
+    transform: translateY(0);
+}
+
+.event-card-hover:hover {
+    transform: translateY(-4px);
+}
+
+/* 事件卡片阴影 */
+.event-card-shadow {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.event-card-shadow:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* 事件卡片圆角 */
+.event-card-rounded {
+    border-radius: 0.5rem;
+}
+
+/* 事件卡片背景 */
+.event-card-bg {
+    background-color: #ffffff;
+}
+
+/* 事件卡片文本 */
+.event-card-text {
+    color: #6b7280;
+}
+
+/* 事件卡片图标 */
+.event-card-icon {
+    color: #9ca3af;
+}
+
+/* 事件卡片按钮 */
+.event-card-btn {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-btn:hover {
+    background-color: #1d4ed8;
+}
+
+/* 事件卡片输入框 */
+.event-card-input {
+    border: 1px solid #e5e7eb;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    width: 100%;
+}
+
+.event-card-input:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.5);
+}
+
+/* 事件卡片选择框 */
+.event-card-select {
+    border: 1px solid #e5e7eb;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    width: 100%;
+}
+
+.event-card-select:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.5);
+}
+
+/* 事件卡片标签 */
+.event-card-tag {
+    background-color: #e5e7eb;
+    color: #1f2937;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    margin-right: 0.25rem;
+}
+
+/* 事件卡片进度条 */
+.event-card-progress {
+    height: 0.25rem;
+    background-color: #e5e7eb;
+    border-radius: 0.125rem;
+    overflow: hidden;
+}
+
+.event-card-progress-bar {
+    height: 100%;
+    background-color: #2563eb;
+    border-radius: 0.125rem;
+}
+
+/* 事件卡片时间戳 */
+.event-card-timestamp {
+    font-size: 0.75rem;
+    color: #9ca3af;
+}
+
+/* 事件卡片操作按钮 */
+.event-card-action {
+    background-color: #e5e7eb;
+    color: #1f2937;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-action:hover {
+    background-color: #d1d5db;
+}
+
+/* 事件卡片删除按钮 */
+.event-card-delete {
+    background-color: #dc2626;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-delete:hover {
+    background-color: #b91c1c;
+}
+
+/* 事件卡片编辑按钮 */
+.event-card-edit {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-edit:hover {
+    background-color: #1d4ed8;
+}
+
+/* 事件卡片查看按钮 */
+.event-card-view {
+    background-color: #16a34a;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-view:hover {
+    background-color: #148f3a;
+}
+
+/* 事件卡片分享按钮 */
+.event-card-share {
+    background-color: #9ca3af;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-share:hover {
+    background-color: #7b818f;
+}
+
+/* 事件卡片打印按钮 */
+.event-card-print {
+    background-color: #6b7280;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-print:hover {
+    background-color: #5a6170;
+}
+
+/* 事件卡片导出按钮 */
+.event-card-export {
+    background-color: #374151;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-export:hover {
+    background-color: #2c3243;
+}
+
+/* 事件卡片导入按钮 */
+.event-card-import {
+    background-color: #1f2937;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-import:hover {
+    background-color: #161d2b;
+}
+
+/* 事件卡片设置按钮 */
+.event-card-settings {
+    background-color: #9ca3af;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-settings:hover {
+    background-color: #7b818f;
+}
+
+/* 事件卡片帮助按钮 */
+.event-card-help {
+    background-color: #6b7280;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-help:hover {
+    background-color: #5a6170;
+}
+
+/* 事件卡片关闭按钮 */
+.event-card-close {
+    background-color: #dc2626;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-close:hover {
+    background-color: #b91c1c;
+}
+
+/* 事件卡片确认按钮 */
+.event-card-confirm {
+    background-color: #16a34a;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-confirm:hover {
+    background-color: #148f3a;
+}
+
+/* 事件卡片取消按钮 */
+.event-card-cancel {
+    background-color: #e5e7eb;
+    color: #1f2937;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-cancel:hover {
+    background-color: #d1d5db;
+}
+
+/* 事件卡片重置按钮 */
+.event-card-reset {
+    background-color: #9ca3af;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-reset:hover {
+    background-color: #7b818f;
+}
+
+/* 事件卡片刷新按钮 */
+.event-card-refresh {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-refresh:hover {
+    background-color: #1d4ed8;
+}
+
+/* 事件卡片搜索按钮 */
+.event-card-search {
+    background-color: #16a34a;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-search:hover {
+    background-color: #148f3a;
+}
+
+/* 事件卡片筛选按钮 */
+.event-card-filter {
+    background-color: #9ca3af;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-filter:hover {
+    background-color: #7b818f;
+}
+
+/* 事件卡片排序按钮 */
+.event-card-sort {
+    background-color: #6b7280;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-sort:hover {
+    background-color: #5a6170;
+}
+
+/* 事件卡片分页按钮 */
+.event-card-page {
+    background-color: #e5e7eb;
+    color: #1f2937;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-page:hover {
+    background-color: #d1d5db;
+}
+
+/* 事件卡片上一页按钮 */
+.event-card-prev {
+    background-color: #e5e7eb;
+    color: #1f2937;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-prev:hover {
+    background-color: #d1d5db;
+}
+
+/* 事件卡片下一页按钮 */
+.event-card-next {
+    background-color: #e5e7eb;
+    color: #1f2937;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-next:hover {
+    background-color: #d1d5db;
+}
+
+/* 事件卡片首页按钮 */
+.event-card-first {
+    background-color: #e5e7eb;
+    color: #1f2937;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-first:hover {
+    background-color: #d1d5db;
+}
+
+/* 事件卡片末页按钮 */
+.event-card-last {
+    background-color: #e5e7eb;
+    color: #1f2937;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-last:hover {
+    background-color: #d1d5db;
+}
+
+/* 事件卡片跳转按钮 */
+.event-card-go {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-go:hover {
+    background-color: #1d4ed8;
+}
+
+/* 事件卡片输入框 */
+.event-card-input {
+    border: 1px solid #e5e7eb;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    width: 100%;
+}
+
+.event-card-input:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.5);
+}
+
+/* 事件卡片选择框 */
+.event-card-select {
+    border: 1px solid #e5e7eb;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    width: 100%;
+}
+
+.event-card-select:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.5);
+}
+
+/* 事件卡片标签 */
+.event-card-tag {
+    background-color: #e5e7eb;
+    color: #1f2937;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    margin-right: 0.25rem;
+}
+
+/* 事件卡片进度条 */
+.event-card-progress {
+    height: 0.25rem;
+    background-color: #e5e7eb;
+    border-radius: 0.125rem;
+    overflow: hidden;
+}
+
+.event-card-progress-bar {
+    height: 100%;
+    background-color: #2563eb;
+    border-radius: 0.125rem;
+}
+
+/* 事件卡片时间戳 */
+.event-card-timestamp {
+    font-size: 0.75rem;
+    color: #9ca3af;
+}
+
+/* 事件卡片操作按钮 */
+.event-card-action {
+    background-color: #e5e7eb;
+    color: #1f2937;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-action:hover {
+    background-color: #d1d5db;
+}
+
+/* 事件卡片删除按钮 */
+.event-card-delete {
+    background-color: #dc2626;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-delete:hover {
+    background-color: #b91c1c;
+}
+
+/* 事件卡片编辑按钮 */
+.event-card-edit {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-edit:hover {
+    background-color: #1d4ed8;
+}
+
+/* 事件卡片查看按钮 */
+.event-card-view {
+    background-color: #16a34a;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-view:hover {
+    background-color: #148f3a;
+}
+
+/* 事件卡片分享按钮 */
+.event-card-share {
+    background-color: #9ca3af;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-share:hover {
+    background-color: #7b818f;
+}
+
+/* 事件卡片打印按钮 */
+.event-card-print {
+    background-color: #6b7280;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-print:hover {
+    background-color: #5a6170;
+}
+
+/* 事件卡片导出按钮 */
+.event-card-export {
+    background-color: #374151;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-export:hover {
+    background-color: #2c3243;
+}
+
+/* 事件卡片导入按钮 */
+.event-card-import {
+    background-color: #1f2937;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-import:hover {
+    background-color: #161d2b;
+}
+
+/* 事件卡片设置按钮 */
+.event-card-settings {
+    background-color: #9ca3af;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-settings:hover {
+    background-color: #7b818f;
+}
+
+/* 事件卡片帮助按钮 */
+.event-card-help {
+    background-color: #6b7280;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-help:hover {
+    background-color: #5a6170;
+}
+
+/* 事件卡片关闭按钮 */
+.event-card-close {
+    background-color: #dc2626;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-close:hover {
+    background-color: #b91c1c;
+}
+
+/* 事件卡片确认按钮 */
+.event-card-confirm {
+    background-color: #16a34a;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-confirm:hover {
+    background-color: #148f3a;
+}
+
+/* 事件卡片取消按钮 */
+.event-card-cancel {
+    background-color: #e5e7eb;
+    color: #1f2937;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-cancel:hover {
+    background-color: #d1d5db;
+}
+
+/* 事件卡片重置按钮 */
+.event-card-reset {
+    background-color: #9ca3af;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-reset:hover {
+    background-color: #7b818f;
+}
+
+/* 事件卡片刷新按钮 */
+.event-card-refresh {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-refresh:hover {
+    background-color: #1d4ed8;
+}
+
+/* 事件卡片搜索按钮 */
+.event-card-search {
+    background-color: #16a34a;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-search:hover {
+    background-color: #148f3a;
+}
+
+/* 事件卡片筛选按钮 */
+.event-card-filter {
+    background-color: #9ca3af;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-filter:hover {
+    background-color: #7b818f;
+}
+
+/* 事件卡片排序按钮 */
+.event-card-sort {
+    background-color: #6b7280;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-sort:hover {
+    background-color: #5a6170;
+}
+
+/* 事件卡片分页按钮 */
+.event-card-page {
+    background-color: #e5e7eb;
+    color: #1f2937;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-page:hover {
+    background-color: #d1d5db;
+}
+
+/* 事件卡片上一页按钮 */
+.event-card-prev {
+    background-color: #e5e7eb;
+    color: #1f2937;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-prev:hover {
+    background-color: #d1d5db;
+}
+
+/* 事件卡片下一页按钮 */
+.event-card-next {
+    background-color: #e5e7eb;
+    color: #1f2937;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-next:hover {
+    background-color: #d1d5db;
+}
+
+/* 事件卡片首页按钮 */
+.event-card-first {
+    background-color: #e5e7eb;
+    color: #1f2937;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-first:hover {
+    background-color: #d1d5db;
+}
+
+/* 事件卡片末页按钮 */
+.event-card-last {
+    background-color: #e5e7eb;
+    color: #1f2937;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-last:hover {
+    background-color: #d1d5db;
+}
+
+/* 事件卡片跳转按钮 */
+.event-card-go {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-go:hover {
+    background-color: #1d4ed8;
+}
+
+/* 事件卡片输入框 */
+.event-card-input {
+    border: 1px solid #e5e7eb;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    width: 100%;
+}
+
+.event-card-input:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.5);
+}
+
+/* 事件卡片选择框 */
+.event-card-select {
+    border: 1px solid #e5e7eb;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    width: 100%;
+}
+
+.event-card-select:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.5);
+}
+
+/* 事件卡片标签 */
+.event-card-tag {
+    background-color: #e5e7eb;
+    color: #1f2937;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    margin-right: 0.25rem;
+}
+
+/* 事件卡片进度条 */
+.event-card-progress {
+    height: 0.25rem;
+    background-color: #e5e7eb;
+    border-radius: 0.125rem;
+    overflow: hidden;
+}
+
+.event-card-progress-bar {
+    height: 100%;
+    background-color: #2563eb;
+    border-radius: 0.125rem;
+}
+
+/* 事件卡片时间戳 */
+.event-card-timestamp {
+    font-size: 0.75rem;
+    color: #9ca3af;
+}
+
+/* 事件卡片操作按钮 */
+.event-card-action {
+    background-color: #e5e7eb;
+    color: #1f2937;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-action:hover {
+    background-color: #d1d5db;
+}
+
+/* 事件卡片删除按钮 */
+.event-card-delete {
+    background-color: #dc2626;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-delete:hover {
+    background-color: #b91c1c;
+}
+
+/* 事件卡片编辑按钮 */
+.event-card-edit {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-edit:hover {
+    background-color: #1d4ed8;
+}
+
+/* 事件卡片查看按钮 */
+.event-card-view {
+    background-color: #16a34a;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-view:hover {
+    background-color: #148f3a;
+}
+
+/* 事件卡片分享按钮 */
+.event-card-share {
+    background-color: #9ca3af;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-share:hover {
+    background-color: #7b818f;
+}
+
+/* 事件卡片打印按钮 */
+.event-card-print {
+    background-color: #6b7280;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-print:hover {
+    background-color: #5a6170;
+}
+
+/* 事件卡片导出按钮 */
+.event-card-export {
+    background-color: #374151;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-export:hover {
+    background-color: #2c3243;
+}
+
+/* 事件卡片导入按钮 */
+.event-card-import {
+    background-color: #1f2937;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-import:hover {
+    background-color: #161d2b;
+}
+
+/* 事件卡片设置按钮 */
+.event-card-settings {
+    background-color: #9ca3af;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-settings:hover {
+    background-color: #7b818f;
+}
+
+/* 事件卡片帮助按钮 */
+.event-card-help {
+    background-color: #6b7280;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-help:hover {
+    background-color: #5a6170;
+}
+
+/* 事件卡片关闭按钮 */
+.event-card-close {
+    background-color: #dc2626;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-close:hover {
+    background-color: #b91c1c;
+}
+
+/* 事件卡片确认按钮 */
+.event-card-confirm {
+    background-color: #16a34a;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-confirm:hover {
+    background-color: #148f3a;
+}
+
+/* 事件卡片取消按钮 */
+.event-card-cancel {
+    background-color: #e5e7eb;
+    color: #1f2937;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-cancel:hover {
+    background-color: #d1d5db;
+}
+
+/* 事件卡片重置按钮 */
+.event-card-reset {
+    background-color: #9ca3af;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-reset:hover {
+    background-color: #7b818f;
+}
+
+/* 事件卡片刷新按钮 */
+.event-card-refresh {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-refresh:hover {
+    background-color: #1d4ed8;
+}
+
+/* 事件卡片搜索按钮 */
+.event-card-search {
+    background-color: #16a34a;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-search:hover {
+    background-color: #148f3a;
+}
+
+/* 事件卡片筛选按钮 */
+.event-card-filter {
+    background-color: #9ca3af;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-filter:hover {
+    background-color: #7b818f;
+}
+
+/* 事件卡片排序按钮 */
+.event-card-sort {
+    background-color: #6b7280;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-sort:hover {
+    background-color: #5a6170;
+}
+
+/* 事件卡片分页按钮 */
+.event-card-page {
+    background-color: #e5e7eb;
+    color: #1f2937;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-page:hover {
+    background-color: #d1d5db;
+}
+
+/* 事件卡片上一页按钮 */
+.event-card-prev {
+    background-color: #e5e7eb;
+    color: #1f2937;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-prev:hover {
+    background-color: #d1d5db;
+}
+
+/* 事件卡片下一页按钮 */
+.event-card-next {
+    background-color: #e5e7eb;
+    color: #1f2937;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-next:hover {
+    background-color: #d1d5db;
+}
+
+/* 事件卡片首页按钮 */
+.event-card-first {
+    background-color: #e5e7eb;
+    color: #1f2937;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-first:hover {
+    background-color: #d1d5db;
+}
+
+/* 事件卡片末页按钮 */
+.event-card-last {
+    background-color: #e5e7eb;
+    color: #1f2937;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-last:hover {
+    background-color: #d1d5db;
+}
+
+/* 事件卡片跳转按钮 */
+.event-card-go {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-go:hover {
+    background-color: #1d4ed8;
+}
+
+/* 事件卡片输入框 */
+.event-card-input {
+    border: 1px solid #e5e7eb;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    width: 100%;
+}
+
+.event-card-input:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.5);
+}
+
+/* 事件卡片选择框 */
+.event-card-select {
+    border: 1px solid #e5e7eb;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    width: 100%;
+}
+
+.event-card-select:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.5);
+}
+
+/* 事件卡片标签 */
+.event-card-tag {
+    background-color: #e5e7eb;
+    color: #1f2937;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    margin-right: 0.25rem;
+}
+
+/* 事件卡片进度条 */
+.event-card-progress {
+    height: 0.25rem;
+    background-color: #e5e7eb;
+    border-radius: 0.125rem;
+    overflow: hidden;
+}
+
+.event-card-progress-bar {
+    height: 100%;
+    background-color: #2563eb;
+    border-radius: 0.125rem;
+}
+
+/* 事件卡片时间戳 */
+.event-card-timestamp {
+    font-size: 0.75rem;
+    color: #9ca3af;
+}
+
+/* 事件卡片操作按钮 */
+.event-card-action {
+    background-color: #e5e7eb;
+    color: #1f2937;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-action:hover {
+    background-color: #d1d5db;
+}
+
+/* 事件卡片删除按钮 */
+.event-card-delete {
+    background-color: #dc2626;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-delete:hover {
+    background-color: #b91c1c;
+}
+
+/* 事件卡片编辑按钮 */
+.event-card-edit {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-edit:hover {
+    background-color: #1d4ed8;
+}
+
+/* 事件卡片查看按钮 */
+.event-card-view {
+    background-color: #16a34a;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-view:hover {
+    background-color: #148f3a;
+}
+
+/* 事件卡片分享按钮 */
+.event-card-share {
+    background-color: #9ca3af;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-share:hover {
+    background-color: #7b818f;
+}
+
+/* 事件卡片打印按钮 */
+.event-card-print {
+    background-color: #6b7280;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-print:hover {
+    background-color: #5a6170;
+}
+
+/* 事件卡片导出按钮 */
+.event-card-export {
+    background-color: #374151;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-export:hover {
+    background-color: #2c3243;
+}
+
+/* 事件卡片导入按钮 */
+.event-card-import {
+    background-color: #1f2937;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-import:hover {
+    background-color: #161d2b;
+}
+
+/* 事件卡片设置按钮 */
+.event-card-settings {
+    background-color: #9ca3af;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-settings:hover {
+    background-color: #7b818f;
+}
+
+/* 事件卡片帮助按钮 */
+.event-card-help {
+    background-color: #6b7280;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-help:hover {
+    background-color: #5a6170;
+}
+
+/* 事件卡片关闭按钮 */
+.event-card-close {
+    background-color: #dc2626;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-close:hover {
+    background-color: #b91c1c;
+}
+
+/* 事件卡片确认按钮 */
+.event-card-confirm {
+    background-color: #16a34a;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-confirm:hover {
+    background-color: #148f3a;
+}
+
+/* 事件卡片取消按钮 */
+.event-card-cancel {
+    background-color: #e5e7eb;
+    color: #1f2937;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-cancel:hover {
+    background-color: #d1d5db;
+}
+
+/* 事件卡片重置按钮 */
+.event-card-reset {
+    background-color: #9ca3af;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-reset:hover {
+    background-color: #7b818f;
+}
+
+/* 事件卡片刷新按钮 */
+.event-card-refresh {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-refresh:hover {
+    background-color: #1d4ed8;
+}
+
+/* 事件卡片搜索按钮 */
+.event-card-search {
+    background-color: #16a34a;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-search:hover {
+    background-color: #148f3a;
+}
+
+/* 事件卡片筛选按钮 */
+.event-card-filter {
+    background-color: #9ca3af;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-filter:hover {
+    background-color: #7b818f;
+}
+
+/* 事件卡片排序按钮 */
+.event-card-sort {
+    background-color: #6b7280;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-sort:hover {
+    background-color: #5a6170;
+}
+
+/* 事件卡片分页按钮 */
+.event-card-page {
+    background-color: #e5e7eb;
+    color: #1f2937;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-page:hover {
+    background-color: #d1d5db;
+}
+
+/* 事件卡片上一页按钮 */
+.event-card-prev {
+    background-color: #e5e7eb;
+    color: #1f2937;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-prev:hover {
+    background-color: #d1d5db;
+}
+
+/* 事件卡片下一页按钮 */
+.event-card-next {
+    background-color: #e5e7eb;
+    color: #1f2937;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-next:hover {
+    background-color: #d1d5db;
+}
+
+/* 事件卡片首页按钮 */
+.event-card-first {
+    background-color: #e5e7eb;
+    color: #1f2937;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-first:hover {
+    background-color: #d1d5db;
+}
+
+/* 事件卡片末页按钮 */
+.event-card-last {
+    background-color: #e5e7eb;
+    color: #1f2937;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-last:hover {
+    background-color: #d1d5db;
+}
+
+/* 事件卡片跳转按钮 */
+.event-card-go {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-go:hover {
+    background-color: #1d4ed8;
+}
+
+/* 事件卡片输入框 */
+.event-card-input {
+    border: 1px solid #e5e7eb;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    width: 100%;
+}
+
+.event-card-input:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.5);
+}
+
+/* 事件卡片选择框 */
+.event-card-select {
+    border: 1px solid #e5e7eb;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    width: 100%;
+}
+
+.event-card-select:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.5);
+}
+
+/* 事件卡片标签 */
+.event-card-tag {
+    background-color: #e5e7eb;
+    color: #1f2937;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    margin-right: 0.25rem;
+}
+
+/* 事件卡片进度条 */
+.event-card-progress {
+    height: 0.25rem;
+    background-color: #e5e7eb;
+    border-radius: 0.125rem;
+    overflow: hidden;
+}
+
+.event-card-progress-bar {
+    height: 100%;
+    background-color: #2563eb;
+    border-radius: 0.125rem;
+}
+
+/* 事件卡片时间戳 */
+.event-card-timestamp {
+    font-size: 0.75rem;
+    color: #9ca3af;
+}
+
+/* 事件卡片操作按钮 */
+.event-card-action {
+    background-color: #e5e7eb;
+    color: #1f2937;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-action:hover {
+    background-color: #d1d5db;
+}
+
+/* 事件卡片删除按钮 */
+.event-card-delete {
+    background-color: #dc2626;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-delete:hover {
+    background-color: #b91c1c;
+}
+
+/* 事件卡片编辑按钮 */
+.event-card-edit {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-edit:hover {
+    background-color: #1d4ed8;
+}
+
+/* 事件卡片查看按钮 */
+.event-card-view {
+    background-color: #16a34a;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-view:hover {
+    background-color: #148f3a;
+}
+
+/* 事件卡片分享按钮 */
+.event-card-share {
+    background-color: #9ca3af;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-share:hover {
+    background-color: #7b818f;
+}
+
+/* 事件卡片打印按钮 */
+.event-card-print {
+    background-color: #6b7280;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-print:hover {
+    background-color: #5a6170;
+}
+
+/* 事件卡片导出按钮 */
+.event-card-export {
+    background-color: #374151;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-export:hover {
+    background-color: #2c3243;
+}
+
+/* 事件卡片导入按钮 */
+.event-card-import {
+    background-color: #1f2937;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-import:hover {
+    background-color: #161d2b;
+}
+
+/* 事件卡片设置按钮 */
+.event-card-settings {
+    background-color: #9ca3af;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-settings:hover {
+    background-color: #7b818f;
+}
+
+/* 事件卡片帮助按钮 */
+.event-card-help {
+    background-color: #6b7280;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-help:hover {
+    background-color: #5a6170;
+}
+
+/* 事件卡片关闭按钮 */
+.event-card-close {
+    background-color: #dc2626;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-close:hover {
+    background-color: #b91c1c;
+}
+
+/* 事件卡片确认按钮 */
+.event-card-confirm {
+    background-color: #16a34a;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-confirm:hover {
+    background-color: #148f3a;
+}
+
+/* 事件卡片取消按钮 */
+.event-card-cancel {
+    background-color: #e5e7eb;
+    color: #1f2937;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-cancel:hover {
+    background-color: #d1d5db;
+}
+
+/* 事件卡片重置按钮 */
+.event-card-reset {
+    background-color: #9ca3af;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-reset:hover {
+    background-color: #7b818f;
+}
+
+/* 事件卡片刷新按钮 */
+.event-card-refresh {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-refresh:hover {
+    background-color: #1d4ed8;
+}
+
+/* 事件卡片搜索按钮 */
+.event-card-search {
+    background-color: #16a34a;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-search:hover {
+    background-color: #148f3a;
+}
+
+/* 事件卡片筛选按钮 */
+.event-card-filter {
+    background-color: #9ca3af;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-filter:hover {
+    background-color: #7b818f;
+}
+
+/* 事件卡片排序按钮 */
+.event-card-sort {
+    background-color: #6b7280;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-sort:hover {
+    background-color: #5a6170;
+}
+
+/* 事件卡片分页按钮 */
+.event-card-page {
+    background-color: #e5e7eb;
+    color: #1f2937;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-page:hover {
+    background-color: #d1d5db;
+}
+
+/* 事件卡片上一页按钮 */
+.event-card-prev {
+    background-color: #e5e7eb;
+    color: #1f2937;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-prev:hover {
+    background-color: #d1d5db;
+}
+
+/* 事件卡片下一页按钮 */
+.event-card-next {
+    background-color: #e5e7eb;
+    color: #1f2937;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-next:hover {
+    background-color: #d1d5db;
+}
+
+/* 事件卡片首页按钮 */
+.event-card-first {
+    background-color: #e5e7eb;
+    color: #1f2937;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-first:hover {
+    background-color: #d1d5db;
+}
+
+/* 事件卡片末页按钮 */
+.event-card-last {
+    background-color: #e5e7eb;
+    color: #1f2937;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-last:hover {
+    background-color: #d1d5db;
+}
+
+/* 事件卡片跳转按钮 */
+.event-card-go {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-go:hover {
+    background-color: #1d4ed8;
+}
+
+/* 事件卡片输入框 */
+.event-card-input {
+    border: 1px solid #e5e7eb;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    width: 100%;
+}
+
+.event-card-input:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.5);
+}
+
+/* 事件卡片选择框 */
+.event-card-select {
+    border: 1px solid #e5e7eb;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    width: 100%;
+}
+
+.event-card-select:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.5);
+}
+
+/* 事件卡片标签 */
+.event-card-tag {
+    background-color: #e5e7eb;
+    color: #1f2937;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    margin-right: 0.25rem;
+}
+
+/* 事件卡片进度条 */
+.event-card-progress {
+    height: 0.25rem;
+    background-color: #e5e7eb;
+    border-radius: 0.125rem;
+    overflow: hidden;
+}
+
+.event-card-progress-bar {
+    height: 100%;
+    background-color: #2563eb;
+    border-radius: 0.125rem;
+}
+
+/* 事件卡片时间戳 */
+.event-card-timestamp {
+    font-size: 0.75rem;
+    color: #9ca3af;
+}
+
+/* 事件卡片操作按钮 */
+.event-card-action {
+    background-color: #e5e7eb;
+    color: #1f2937;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-action:hover {
+    background-color: #d1d5db;
+}
+
+/* 事件卡片删除按钮 */
+.event-card-delete {
+    background-color: #dc2626;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-delete:hover {
+    background-color: #b91c1c;
+}
+
+/* 事件卡片编辑按钮 */
+.event-card-edit {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-edit:hover {
+    background-color: #1d4ed8;
+}
+
+/* 事件卡片查看按钮 */
+.event-card-view {
+    background-color: #16a34a;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-view:hover {
+    background-color: #148f3a;
+}
+
+/* 事件卡片分享按钮 */
+.event-card-share {
+    background-color: #9ca3af;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-share:hover {
+    background-color: #7b818f;
+}
+
+/* 事件卡片打印按钮 */
+.event-card-print {
+    background-color: #6b7280;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-print:hover {
+    background-color: #5a6170;
+}
+
+/* 事件卡片导出按钮 */
+.event-card-export {
+    background-color: #374151;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-export:hover {
+    background-color: #2c3243;
+}
+
+/* 事件卡片导入按钮 */
+.event-card-import {
+    background-color: #1f2937;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-import:hover {
+    background-color: #161d2b;
+}
+
+/* 事件卡片设置按钮 */
+.event-card-settings {
+    background-color: #9ca3af;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-settings:hover {
+    background-color: #7b818f;
+}
+
+/* 事件卡片帮助按钮 */
+.event-card-help {
+    background-color: #6b7280;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-help:hover {
+    background-color: #5a6170;
+}
+
+/* 事件卡片关闭按钮 */
+.event-card-close {
+    background-color: #dc2626;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-close:hover {
+    background-color: #b91c1c;
+}
+
+/* 事件卡片确认按钮 */
+.event-card-confirm {
+    background-color: #16a34a;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-confirm:hover {
+    background-color: #148f3a;
+}
+
+/* 事件卡片取消按钮 */
+.event-card-cancel {
+    background-color: #e5e7eb;
+    color: #1f2937;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-cancel:hover {
+    background-color: #d1d5db;
+}
+
+/* 事件卡片重置按钮 */
+.event-card-reset {
+    background-color: #9ca3af;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-reset:hover {
+    background-color: #7b818f;
+}
+
+/* 事件卡片刷新按钮 */
+.event-card-refresh {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-refresh:hover {
+    background-color: #1d4ed8;
+}
+
+/* 事件卡片搜索按钮 */
+.event-card-search {
+    background-color: #16a34a;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-search:hover {
+    background-color: #148f3a;
+}
+
+/* 事件卡片筛选按钮 */
+.event-card-filter {
+    background-color: #9ca3af;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-filter:hover {
+    background-color: #7b818f;
+}
+
+/* 事件卡片排序按钮 */
+.event-card-sort {
+    background-color: #6b7280;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-sort:hover {
+    background-color: #5a6170;
+}
+
+/* 事件卡片分页按钮 */
+.event-card-page {
+    background-color: #e5e7eb;
+    color: #1f2937;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-page:hover {
+    background-color: #d1d5db;
+}
+
+/* 事件卡片上一页按钮 */
+.event-card-prev {
+    background-color: #e5e7eb;
+    color: #1f2937;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-prev:hover {
+    background-color: #d1d5db;
+}
+
+/* 事件卡片下一页按钮 */
+.event-card-next {
+    background-color: #e5e7eb;
+    color: #1f2937;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-next:hover {
+    background-color: #d1d5db;
+}
+
+/* 事件卡片首页按钮 */
+.event-card-first {
+    background-color: #e5e7eb;
+    color: #1f2937;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-first:hover {
+    background-color: #d1d5db;
+}
+
+/* 事件卡片末页按钮 */
+.event-card-last {
+    background-color: #e5e7eb;
+    color: #1f2937;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-last:hover {
+    background-color: #d1d5db;
+}
+
+/* 事件卡片跳转按钮 */
+.event-card-go {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-go:hover {
+    background-color: #1d4ed8;
+}
+
+/* 事件卡片输入框 */
+.event-card-input {
+    border: 1px solid #e5e7eb;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    width: 100%;
+}
+
+.event-card-input:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.5);
+}
+
+/* 事件卡片选择框 */
+.event-card-select {
+    border: 1px solid #e5e7eb;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    width: 100%;
+}
+
+.event-card-select:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.5);
+}
+
+/* 事件卡片标签 */
+.event-card-tag {
+    background-color: #e5e7eb;
+    color: #1f2937;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    margin-right: 0.25rem;
+}
+
+/* 事件卡片进度条 */
+.event-card-progress {
+    height: 0.25rem;
+    background-color: #e5e7eb;
+    border-radius: 0.125rem;
+    overflow: hidden;
+}
+
+.event-card-progress-bar {
+    height: 100%;
+    background-color: #2563eb;
+    border-radius: 0.125rem;
+}
+
+/* 事件卡片时间戳 */
+.event-card-timestamp {
+    font-size: 0.75rem;
+    color: #9ca3af;
+}
+
+/* 事件卡片操作按钮 */
+.event-card-action {
+    background-color: #e5e7eb;
+    color: #1f2937;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-action:hover {
+    background-color: #d1d5db;
+}
+
+/* 事件卡片删除按钮 */
+.event-card-delete {
+    background-color: #dc2626;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-delete:hover {
+    background-color: #b91c1c;
+}
+
+/* 事件卡片编辑按钮 */
+.event-card-edit {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-edit:hover {
+    background-color: #1d4ed8;
+}
+
+/* 事件卡片查看按钮 */
+.event-card-view {
+    background-color: #16a34a;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-view:hover {
+    background-color: #148f3a;
+}
+
+/* 事件卡片分享按钮 */
+.event-card-share {
+    background-color: #9ca3af;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-share:hover {
+    background-color: #7b818f;
+}
+
+/* 事件卡片打印按钮 */
+.event-card-print {
+    background-color: #6b7280;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-print:hover {
+    background-color: #5a6170;
+}
+
+/* 事件卡片导出按钮 */
+.event-card-export {
+    background-color: #374151;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-export:hover {
+    background-color: #2c3243;
+}
+
+/* 事件卡片导入按钮 */
+.event-card-import {
+    background-color: #1f2937;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-import:hover {
+    background-color: #161d2b;
+}
+
+/* 事件卡片设置按钮 */
+.event-card-settings {
+    background-color: #9ca3af;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-settings:hover {
+    background-color: #7b818f;
+}
+
+/* 事件卡片帮助按钮 */
+.event-card-help {
+    background-color: #6b7280;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-help:hover {
+    background-color: #5a6170;
+}
+
+/* 事件卡片关闭按钮 */
+.event-card-close {
+    background-color: #dc2626;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-close:hover {
+    background-color: #b91c1c;
+}
+
+/* 事件卡片确认按钮 */
+.event-card-confirm {
+    background-color: #16a34a;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-confirm:hover {
+    background-color: #148f3a;
+}
+
+/* 事件卡片取消按钮 */
+.event-card-cancel {
+    background-color: #e5e7eb;
+    color: #1f2937;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-cancel:hover {
+    background-color: #d1d5db;
+}
+
+/* 事件卡片重置按钮 */
+.event-card-reset {
+    background-color: #9ca3af;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-reset:hover {
+    background-color: #7b818f;
+}
+
+/* 事件卡片刷新按钮 */
+.event-card-refresh {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-refresh:hover {
+    background-color: #1d4ed8;
+}
+
+/* 事件卡片搜索按钮 */
+.event-card-search {
+    background-color: #16a34a;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-search:hover {
+    background-color: #148f3a;
+}
+
+/* 事件卡片筛选按钮 */
+.event-card-filter {
+    background-color: #9ca3af;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-filter:hover {
+    background-color: #7b818f;
+}
+
+/* 事件卡片排序按钮 */
+.event-card-sort {
+    background-color: #6b7280;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-sort:hover {
+    background-color: #5a6170;
+}
+
+/* 事件卡片分页按钮 */
+.event-card-page {
+    background-color: #e5e7eb;
+    color: #1f2937;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-page:hover {
+    background-color: #d1d5db;
+}
+
+/* 事件卡片上一页按钮 */
+.event-card-prev {
+    background-color: #e5e7eb;
+    color: #1f2937;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-prev:hover {
+    background-color: #d1d5db;
+}
+
+/* 事件卡片下一页按钮 */
+.event-card-next {
+    background-color: #e5e7eb;
+    color: #1f2937;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-next:hover {
+    background-color: #d1d5db;
+}
+
+/* 事件卡片首页按钮 */
+.event-card-first {
+    background-color: #e5e7eb;
+    color: #1f2937;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-first:hover {
+    background-color: #d1d5db;
+}
+
+/* 事件卡片末页按钮 */
+.event-card-last {
+    background-color: #e5e7eb;
+    color: #1f2937;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-last:hover {
+    background-color: #d1d5db;
+}
+
+/* 事件卡片跳转按钮 */
+.event-card-go {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-go:hover {
+    background-color: #1d4ed8;
+}
+
+/* 事件卡片输入框 */
+.event-card-input {
+    border: 1px solid #e5e7eb;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    width: 100%;
+}
+
+.event-card-input:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.5);
+}
+
+/* 事件卡片选择框 */
+.event-card-select {
+    border: 1px solid #e5e7eb;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    width: 100%;
+}
+
+.event-card-select:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.5);
+}
+
+/* 事件卡片标签 */
+.event-card-tag {
+    background-color: #e5e7eb;
+    color: #1f2937;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    margin-right: 0.25rem;
+}
+
+/* 事件卡片进度条 */
+.event-card-progress {
+    height: 0.25rem;
+    background-color: #e5e7eb;
+    border-radius: 0.125rem;
+    overflow: hidden;
+}
+
+.event-card-progress-bar {
+    height: 100%;
+    background-color: #2563eb;
+    border-radius: 0.125rem;
+}
+
+/* 事件卡片时间戳 */
+.event-card-timestamp {
+    font-size: 0.75rem;
+    color: #9ca3af;
+}
+
+/* 事件卡片操作按钮 */
+.event-card-action {
+    background-color: #e5e7eb;
+    color: #1f2937;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-action:hover {
+    background-color: #d1d5db;
+}
+
+/* 事件卡片删除按钮 */
+.event-card-delete {
+    background-color: #dc2626;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-delete:hover {
+    background-color: #b91c1c;
+}
+
+/* 事件卡片编辑按钮 */
+.event-card-edit {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-edit:hover {
+    background-color: #1d4ed8;
+}
+
+/* 事件卡片查看按钮 */
+.event-card-view {
+    background-color: #16a34a;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-view:hover {
+    background-color: #148f3a;
+}
+
+/* 事件卡片分享按钮 */
+.event-card-share {
+    background-color: #9ca3af;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-share:hover {
+    background-color: #7b818f;
+}
+
+/* 事件卡片打印按钮 */
+.event-card-print {
+    background-color: #6b7280;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-print:hover {
+    background-color: #5a6170;
+}
+
+/* 事件卡片导出按钮 */
+.event-card-export {
+    background-color: #374151;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-export:hover {
+    background-color: #2c3243;
+}
+
+/* 事件卡片导入按钮 */
+.event-card-import {
+    background-color: #1f2937;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-import:hover {
+    background-color: #161d2b;
+}
+
+/* 事件卡片设置按钮 */
+.event-card-settings {
+    background-color: #9ca3af;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-settings:hover {
+    background-color: #7b818f;
+}
+
+/* 事件卡片帮助按钮 */
+.event-card-help {
+    background-color: #6b7280;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-help:hover {
+    background-color: #5a6170;
+}
+
+/* 事件卡片关闭按钮 */
+.event-card-close {
+    background-color: #dc2626;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-close:hover {
+    background-color: #b91c1c;
+}
+
+/* 事件卡片确认按钮 */
+.event-card-confirm {
+    background-color: #16a34a;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-confirm:hover {
+    background-color: #148f3a;
+}
+
+/* 事件卡片取消按钮 */
+.event-card-cancel {
+    background-color: #e5e7eb;
+    color: #1f2937;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-cancel:hover {
+    background-color: #d1d5db;
+}
+
+/* 事件卡片重置按钮 */
+.event-card-reset {
+    background-color: #9ca3af;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-reset:hover {
+    background-color: #7b818f;
+}
+
+/* 事件卡片刷新按钮 */
+.event-card-refresh {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-refresh:hover {
+    background-color: #1d4ed8;
+}
+
+/* 事件卡片搜索按钮 */
+.event-card-search {
+    background-color: #16a34a;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-search:hover {
+    background-color: #148f3a;
+}
+
+/* 事件卡片筛选按钮 */
+.event-card-filter {
+    background-color: #9ca3af;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-filter:hover {
+    background-color: #7b818f;
+}
+
+/* 事件卡片排序按钮 */
+.event-card-sort {
+    background-color: #6b7280;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-sort:hover {
+    background-color: #5a6170;
+}
+
+/* 事件卡片分页按钮 */
+.event-card-page {
+    background-color: #e5e7eb;
+    color: #1f2937;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-page:hover {
+    background-color: #d1d5db;
+}
+
+/* 事件卡片上一页按钮 */
+.event-card-prev {
+    background-color: #e5e7eb;
+    color: #1f2937;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-prev:hover {
+    background-color: #d1d5db;
+}
+
+/* 事件卡片下一页按钮 */
+.event-card-next {
+    background-color: #e5e7eb;
+    color: #1f2937;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-next:hover {
+    background-color: #d1d5db;
+}
+
+/* 事件卡片首页按钮 */
+.event-card-first {
+    background-color: #e5e7eb;
+    color: #1f2937;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-first:hover {
+    background-color: #d1d5db;
+}
+
+/* 事件卡片末页按钮 */
+.event-card-last {
+    background-color: #e5e7eb;
+    color: #1f2937;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-last:hover {
+    background-color: #d1d5db;
+}
+
+/* 事件卡片跳转按钮 */
+.event-card-go {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.event-card-go:hover {
+    background-color: #1d4ed8;
+}
+
+/* 事件卡片输入框 */
+.event-card-input {
+    border: 1px solid #e5e7eb;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    width: 100%;
+}
+
+.event-card-input:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.5);
+}
+
+/* 事件卡片选择框 */
+.event-card-select {
+    border: 1px solid #e5e7eb;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.

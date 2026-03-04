@@ -1,0 +1,124 @@
+{% extends "base_field_ops.html" %}
+
+{% block title %}FieldOps - 进场向导{% endblock %}
+
+{% block content %}
+<div class="bg-white rounded-lg shadow p-6 max-w-4xl mx-auto">
+    <h2 class="text-xl font-semibold text-gray-800 mb-6">新批次进场向导</h2>
+    
+    <form id="inbound-form" hx-post="/api/batches" hx-trigger="submit" hx-swap="innerHTML" hx-target="#form-container" class="space-y-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- 批次信息 -->
+            <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                <h3 class="font-medium text-blue-800 mb-3">批次基本信息</h3>
+                
+                <div class="space-y-4">
+                    <div>
+                        <label for="batch_code" class="block text-sm font-medium text-gray-700 mb-1">批次编号 *</label>
+                        <input type="text" id="batch_code" name="batch_code" required 
+                               class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+                    
+                    <div>
+                        <label for="initial_quantity" class="block text-sm font-medium text-gray-700 mb-1">初始数量 *</label>
+                        <input type="number" id="initial_quantity" name="initial_quantity" required 
+                               class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+                    
+                    <div>
+                        <label for="vaccine_plan" class="block text-sm font-medium text-gray-700 mb-1">免疫方案 *</label>
+                        <select id="vaccine_plan" name="vaccine_plan" required 
+                                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <option value="A">方案 A：疫苗足够，全量接种（一免+二免）</option>
+                            <option value="B">方案 B：疫苗不足，部分只做1免</option>
+                            <option value="C">方案 C：疫苗更少，全部只做1免</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 分栏分配 -->
+            <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+                <h3 class="font-medium text-green-800 mb-3">分栏分配</h3>
+                
+                <div class="space-y-4">
+                    <div>
+                        <label for="distribution" class="block text-sm font-medium text-gray-700 mb-1">分配方式 *</label>
+                        <select id="distribution" name="distribution" required 
+                                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+                            <option value="auto">自动分配（按容量均分）</option>
+                            <option value="manual">手动分配</option>
+                        </select>
+                    </div>
+                    
+                    <div id="manual-distribution" style="display: none;">
+                        <p class="text-sm text-gray-600 mb-2">请逐栏输入分配数量：</p>
+                        <div id="pen-allocations" class="space-y-2">
+                            <div class="flex items-center space-x-2">
+                                <span class="w-20 text-sm text-gray-600">栏位 1:</span>
+                                <input type="number" name="pen_allocations[1]" class="w-24 px-2 py-1 border border-gray-300 rounded text-sm">
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <span class="w-20 text-sm text-gray-600">栏位 2:</span>
+                                <input type="number" name="pen_allocations[2]" class="w-24 px-2 py-1 border border-gray-300 rounded text-sm">
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <span class="w-20 text-sm text-gray-600">栏位 3:</span>
+                                <input type="number" name="pen_allocations[3]" class="w-24 px-2 py-1 border border-gray-300 rounded text-sm">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 按钮 -->
+        <div class="flex justify-end space-x-4">
+            <button type="button" onclick="window.location.href='/api/batches'" 
+                    class="px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50 transition">
+                取消
+            </button>
+            <button type="submit" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md text-sm font-medium transition">
+                提交并创建批次
+            </button>
+        </div>
+    </form>
+    
+    <!-- 成功提示 -->
+    <div id="form-container" class="mt-6 hidden">
+        <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+            <div class="flex items-center">
+                <svg class="w-5 h-5 text-green-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                <p class="text-sm text-green-700">批次已成功创建！</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 动态脚本：处理表单逻辑 -->
+<script>
+    // 切换分配方式显示/隐藏手动分配区域
+    document.getElementById("distribution").addEventListener("change", function() {
+        const manualDiv = document.getElementById("manual-distribution");
+        if (this.value === "manual") {
+            manualDiv.style.display = "block";
+        } else {
+            manualDiv.style.display = "none";
+        }
+    });
+    
+    // 表单提交后显示成功提示，并在3秒后隐藏
+    document.addEventListener("htmx:afterRequest", function(evt) {
+        if (evt.detail.xhr.status === 200) {
+            const container = document.getElementById("form-container");
+            container.classList.remove("hidden");
+            
+            setTimeout(() => {
+                container.classList.add("hidden");
+            }, 3000);
+        }
+    });
+</script>
+{% endblock %}

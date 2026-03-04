@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}FieldOps - 现场运维系统{% endblock %}</title>
+    <!-- CSS 引入 -->
+    <link rel="stylesheet" href="/static/css/style.css">
+    <!-- HTMX 支持 -->
+    <script src="https://unpkg.com/htmx.org@2.0.3/dist/htmx.min.js"></script>
+    <!-- 简单的 JS 工具函数 -->
+    <script>
+        // 用于动态刷新卡片内容（如事件滚动）
+        function refreshCard(cardId) {
+            const card = document.getElementById(cardId);
+            if (card) {
+                htmx.trigger(card, "refresh");
+            }
+        }
+        
+        // 用于关闭模态框（如果需要）
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.remove("show");
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50">
+    <!-- 导航栏 -->
+    <nav class="bg-blue-600 text-white shadow-md">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <span class="text-xl font-bold">FieldOps</span>
+                <span class="text-sm opacity-90">(现场运维系统)</span>
+            </div>
+            <div class="flex items-center space-x-4">
+                <span class="text-sm">当前时间: <span id="current-time">{{ now }}</span></span>
+                <button onclick="window.location.href='/api/tree'" class="px-3 py-1 bg-blue-700 hover:bg-blue-800 rounded text-sm transition">数据结构</button>
+                <button onclick="window.location.href='/api/events'" class="px-3 py-1 bg-blue-700 hover:bg-blue-800 rounded text-sm transition">事件流</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主体内容 -->
+    <main class="container mx-auto px-4 py-6">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-gray-800 text-gray-400 text-center py-4 text-sm">
+        &copy; 2026 FieldOps 系统 | 基于 ISO9001 框架构建 | 版本 1.0.0
+    </footer>
+
+    <!-- 动态时间更新 -->
+    <script>
+        setInterval(() => {
+            const now = new Date().toLocaleString('zh-CN');
+            document.getElementById('current-time').textContent = now;
+        }, 1000);
+    </script>
+</body>
+</html>

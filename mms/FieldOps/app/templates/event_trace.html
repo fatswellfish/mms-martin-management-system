@@ -1,0 +1,157 @@
+{% extends "base_field_ops.html" %}
+
+{% block title %}FieldOps - 事件追踪{% endblock %}
+
+{% block content %}
+<div class="bg-white rounded-lg shadow p-6">
+    <h2 class="text-xl font-semibold text-gray-800 mb-4">事件追踪</h2>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <!-- 事件列表 -->
+        <div class="bg-gray-50 border border-gray-200 rounded-lg p-4">
+            <h3 class="font-medium text-gray-800 mb-3">事件流</h3>
+            <div id="event-list-container" hx-get="/api/events?limit=20" hx-trigger="load" hx-swap="innerHTML" hx-target="#event-list-container" class="space-y-2 max-h-64 overflow-y-auto">
+                <p class="text-sm text-gray-500">正在加载事件...</p>
+            </div>
+        </div>
+        
+        <!-- 事件统计图 -->
+        <div class="bg-white border border-gray-200 rounded-lg p-4">
+            <h3 class="font-medium text-gray-800 mb-3">事件类型分布</h3>
+            <div id="event-chart-container" hx-get="/api/events/stats" hx-trigger="load" hx-swap="innerHTML" hx-target="#event-chart-container" class="h-48 bg-gray-100 rounded flex items-center justify-center">
+                <p class="text-sm text-gray-500">正在生成图表...</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 详细信息 -->
+    <div class="bg-white border border-gray-200 rounded-lg p-4">
+        <h3 class="font-medium text-gray-800 mb-3">事件详情</h3>
+        <div id="event-detail-container" hx-get="/api/events?limit=1" hx-trigger="load" hx-swap="innerHTML" hx-target="#event-detail-container" class="space-y-2">
+            <p class="text-sm text-gray-500">正在加载详情...</p>
+        </div>
+    </div>
+</div>
+
+<!-- 动态脚本：渲染图表 -->
+<script>
+    document.addEventListener("htmx:afterSwap", function(evt) {
+        if (evt.detail.target.id === "event-list-container") {
+            const events = evt.detail.xhr.response;
+            if (events && events.length > 0) {
+                const container = document.getElementById("event-list-container");
+                container.innerHTML = '';
+                
+                events.forEach(event => {
+                    const item = document.createElement("div");
+                    item.className = "flex items-center gap-2 p-2 border-b border-gray-100 text-sm";
+                    
+                    const colorBlock = document.createElement("div");
+                    colorBlock.className = "w-3 h-3 rounded-full";
+                    colorBlock.style.backgroundColor = event.color;
+                    
+                    const content = document.createElement("div");
+                    content.className = "flex-1 min-w-0";
+                    
+                    const title = document.createElement("span");
+                    title.className = "font-medium text-gray-800";
+                    title.textContent = `[${event.level}] ${event.event_type}`;
+                    
+                    const time = document.createElement("span");
+                    time.className = "text-xs text-gray-500 ml-2";
+                    time.textContent = event.timestamp;
+                    
+                    content.appendChild(title);
+                    content.appendChild(time);
+                    
+                    item.appendChild(colorBlock);
+                    item.appendChild(content);
+                    
+                    container.appendChild(item);
+                });
+            } else {
+                document.getElementById("event-list-container").innerHTML = '<p class="text-sm text-gray-500">暂无事件记录。</p>';
+            }
+        }
+        
+        if (evt.detail.target.id === "event-chart-container") {
+            const stats = evt.detail.xhr.response;
+            if (stats && Object.keys(stats).length > 0) {
+                const container = document.getElementById("event-chart-container");
+                container.innerHTML = '';
+                
+                const chart = document.createElement("div");
+                chart.className = "flex flex-col space-y-1 w-full h-full";
+                
+                Object.entries(stats).forEach(([type, count]) => {
+                    const bar = document.createElement("div");
+                    bar.className = "flex items-center justify-between text-xs";
+                    
+                    const label = document.createElement("span");
+                    label.textContent = type;
+                    
+                    const barFill = document.createElement("div");
+                    barFill.className = "bg-blue-500 h-3 rounded flex-1 mx-2";
+                    barFill.style.width = `${(count / Math.max(...Object.values(stats))) * 100}%`;
+                    
+                    const countSpan = document.createElement("span");
+                    countSpan.className = "text-gray-600";
+                    countSpan.textContent = count;
+                    
+                    bar.appendChild(label);
+                    bar.appendChild(barFill);
+                    bar.appendChild(countSpan);
+                    
+                    chart.appendChild(bar);
+                });
+                
+                container.appendChild(chart);
+            } else {
+                document.getElementById("event-chart-container").innerHTML = '<p class="text-sm text-gray-500">暂无统计数据。</p>';
+            }
+        }
+        
+        if (evt.detail.target.id === "event-detail-container") {
+            const events = evt.detail.xhr.response;
+            if (events && events.length > 0) {
+                const container = document.getElementById("event-detail-container");
+                container.innerHTML = '';
+                
+                events.forEach(event => {
+                    const item = document.createElement("div");
+                    item.className = "p-3 border border-gray-200 rounded bg-gray-50 text-sm";
+                    
+                    const header = document.createElement("div");
+                    header.className = "font-medium text-gray-800 mb-1";
+                    header.textContent = `[${event.level}] ${event.event_type}`;
+                    
+                    const body = document.createElement("div");
+                    body.className = "text-gray-700";
+                    body.textContent = event.message;
+                    
+                    if (event.quantity) {
+                        const quantity = document.createElement("div");
+                        quantity.className = "text-xs text-gray-500 mt-1";
+                        quantity.textContent = `数量: ${event.quantity}`;
+                        body.appendChild(quantity);
+                    }
+                    
+                    if (event.actor) {
+                        const actor = document.createElement("div");
+                        actor.className = "text-xs text-gray-500 mt-1";
+                        actor.textContent = `操作人: ${event.actor}`;
+                        body.appendChild(actor);
+                    }
+                    
+                    item.appendChild(header);
+                    item.appendChild(body);
+                    
+                    container.appendChild(item);
+                });
+            } else {
+                document.getElementById("event-detail-container").innerHTML = '<p class="text-sm text-gray-500">暂无事件详情。</p>';
+            }
+        }
+    });
+</script>
+{% endblock %}

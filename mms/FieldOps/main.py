@@ -1,16 +1,26 @@
 from fastapi import FastAPI
-from fastapi.staticfiles import StaticFiles
+from mms.FieldOps.routers import main_router
+from mms.FieldOps.database import init_db
 
-from .router import router as fieldops_router
-from .router_views import router as fieldops_views_router
-from .router_rewrite import router as rewrite_router
-from .router_events import router as events_router
+# 创建 FastAPI 应用实例
+def create_app():
+    app = FastAPI(title="FieldOps - 现场运维系统", description="基于 ISO9001 框架的养殖场管理平台")
+    
+    # 包含所有路由（包括 API）
+    app.include_router(main_router)
+    
+    # 初始化数据库表结构（首次运行时）
+    init_db()
+    
+    return app
 
-app = FastAPI(title="FieldOps")
+# 生成应用实例
+class FieldOpsApp:
+    def __init__(self):
+        self.app = create_app()
+    
+    def get_app(self):
+        return self.app
 
-app.mount("/static", StaticFiles(directory="mms/static"), name="static")
-
-app.include_router(events_router)
-app.include_router(rewrite_router)
-app.include_router(fieldops_router)
-app.include_router(fieldops_views_router)
+# 实例化并导出应用（供 Uvicorn 启动）
+app = FieldOpsApp().get_app()

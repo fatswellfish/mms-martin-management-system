@@ -1,0 +1,83 @@
+{% extends "base_field_ops.html" %}
+
+{% block title %}FieldOps - 主仪表盘{% endblock %}
+
+{% block content %}
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <!-- 农场卡片 -->
+    <div id="farm-card" hx-get="/api/tree" hx-trigger="load" hx-swap="innerHTML" hx-target="#farm-card" class="bg-white rounded-lg shadow p-6">
+        <h2 class="text-xl font-semibold text-gray-800 mb-4">全场概览</h2>
+        <div class="flex justify-between items-center mb-2">
+            <span class="text-sm text-gray-600">总批次数</span>
+            <span class="font-bold text-blue-600" id="total-batches">-</span>
+        </div>
+        <div class="flex justify-between items-center mb-2">
+            <span class="text-sm text-gray-600">当前存活猪只</span>
+            <span class="font-bold text-green-600" id="total-alive">-</span>
+        </div>
+        <div class="flex justify-between items-center mb-2">
+            <span class="text-sm text-gray-600">今日待处理事件</span>
+            <span class="font-bold text-orange-600" id="pending-events">-</span>
+        </div>
+        <div class="mt-4">
+            <button onclick="refreshCard('farm-card')" class="px-3 py-1 bg-gray-200 hover:bg-gray-300 rounded text-sm transition">
+                刷新数据
+            </button>
+        </div>
+    </div>
+
+    <!-- 事件滚动栏 -->
+    <div id="event-scroller" hx-get="/api/events?limit=5" hx-trigger="load delay:30000" hx-swap="innerHTML" hx-target="#event-scroller" class="bg-white rounded-lg shadow p-6">
+        <h2 class="text-xl font-semibold text-gray-800 mb-4">实时事件流</h2>
+        <ul id="event-list" class="space-y-2 max-h-64 overflow-y-auto">
+            <li class="text-sm text-gray-500 italic">正在加载...</li>
+        </ul>
+        <div class="mt-4">
+            <button onclick="refreshCard('event-scroller')" class="px-3 py-1 bg-gray-200 hover:bg-gray-300 rounded text-sm transition">
+                刷新事件
+            </button>
+        </div>
+    </div>
+
+    <!-- 猪舍网格（平铺） -->
+    <div id="barn-grid" hx-get="/api/barns" hx-trigger="load" hx-swap="innerHTML" hx-target="#barn-grid" class="bg-white rounded-lg shadow p-6">
+        <h2 class="text-xl font-semibold text-gray-800 mb-4">猪舍矩阵</h2>
+        <div id="barn-cards" class="grid grid-cols-2 gap-3">
+            <p class="text-sm text-gray-500">正在加载猪舍...</p>
+        </div>
+    </div>
+</div>
+
+<!-- 动态脚本：更新卡片数据 -->
+<script>
+    // 当事件列表加载后，动态更新数量
+    document.addEventListener("htmx:afterSwap", function(evt) {
+        if (evt.detail.target.id === "event-scroller") {
+            const events = evt.detail.xhr.response;
+            if (events && events.length > 0) {
+                const count = events.length;
+                document.getElementById("pending-events").textContent = count;
+            }
+        }
+        
+        // 当猪舍网格加载后，更新卡片内容
+        if (evt.detail.target.id === "barn-grid") {
+            const barns = evt.detail.xhr.response;
+            if (barns && barns.length > 0) {
+                const container = document.getElementById("barn-cards");
+                container.innerHTML = '';
+                barns.forEach(barn => {
+                    const card = document.createElement("div");
+                    card.className = "bg-blue-50 border border-blue-200 rounded-lg p-3 text-center h-24 flex flex-col justify-center items-center transition hover:shadow-md";
+                    card.innerHTML = `
+                        <span class="font-medium text-blue-700">${barn.name}</span>
+                        <span class="text-xs text-gray-600">${barn.barn_type}</span>
+                        <span class="text-xs text-green-600 mt-1">${barn.pens.length} 栏</span>
+                    `;
+                    container.appendChild(card);
+                });
+            }
+        }
+    });
+</script>
+{% endblock %}

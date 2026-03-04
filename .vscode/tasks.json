@@ -1,0 +1,19 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "启动 OpenClaw AI 助手",
+            "type": "shell",
+            "command": "openclaw gateway run",
+            "problemMatcher": [],
+            "isBackground": true, // 作为后台任务运行
+            "presentation": {
+                "echo": true,
+                "reveal": "silent", // 在后台启动，不抢占焦点
+                "focus": false,
+                "panel": "dedicated", // 使用独立终端面板
+                "showReuseMessage": true
+            }
+        }
+    ]
+}
