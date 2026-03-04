@@ -1,0 +1,69 @@
+FieldOps 项目任务卡 · FO-TAKEOVER-001
+
+一、GitHub 仓库
+https://github.com/fatswellfish/mms-martin-management-system
+主分支：main
+
+二、三份关键文档（必须加载）
+业务需求（BUSINESS SPEC）：
+https://raw.githubusercontent.com/fatswellfish/mms-martin-management-system/main/docs/FIELDOPS_BUSINESS_SPEC.txt
+
+项目状态（PROJECT STATUS）：
+https://raw.githubusercontent.com/fatswellfish/mms-martin-management-system/main/docs/FIELDOPS_PROJECT_STATUS.txt
+
+Agent 知识库（AGENT KNOWLEDGE）：
+https://raw.githubusercontent.com/fatswellfish/mms-martin-management-system/main/docs/FIELDOPS_AGENT_KNOWLEDGE.txt
+
+三、加载测试（给接手模型使用）
+尝试加载以上 RAW 链接。
+如失败可使用 GitHub API：
+https://api.github.com/repos/fatswellfish/mms-martin-management-system/contents/docs/FIELDOPS_BUSINESS_SPEC.txt?ref=main
+
+四、当前已完成内容（必须知晓）
+1. FieldOps 独立子系统已建立：mms/FieldOps/
+2. 所有 FARM/FieldOps HTML 已复制到 FieldOps/views/ 下
+3. 所有页面 farm-tree、farm-structure、batch-detail、event-trace、inbound-wizard 均可 200 OK 渲染
+4. 静态 CSS 成功加载
+5. 旧系统 /pig-farm/* 路径已自动跳转到 /FieldOps/*
+6. Jinja Loader 已修复，可正确加载 farm/ 与 field_ops/ includes
+
+五、下一位必须继续的开发任务
+1. 生成 FieldOps 后端真实 API：
+   /FieldOps/api/tree
+   /FieldOps/api/batches
+   /FieldOps/api/barn/{id}
+   /FieldOps/api/pen/{id}
+   /FieldOps/api/events
+   /FieldOps/api/experiment
+
+2. 将 API 与前端卡片 UI 联动
+
+3. 生成事件滚动事件流 EventScroller
+
+4. 生成免疫实验（方案 A/B/C）流程 API
+
+5. 生成完整 models/schemas/services
+
+六、业务核心逻辑（摘要）
+位置体系：
+Farm → Barn(带类型) → Pen → Batch 分布 → Events
+
+事件体系：
+转栏、死亡、出栏、防疫、生病、治疗、批次事件、栏事件、舍事件
+
+批次体系：
+一次进场 N 头 → 多栏分布 → 事件驱动流转
+
+免疫体系：
+1 免、2 免、留种逻辑、实验方案 A/B/C
+
+七、接手流程（必须遵守）
+1. 加载三份文档
+2. 阅读当前项目状态
+3. 从未完成列表依序推进
+4. 所有后端代码写入 mms/FieldOps/
+5. legacy 只读
+6. 使用 mms_agent 执行 DSL
+7. 维持 FieldOps 为独立子系统
+
+（任务卡结束）
