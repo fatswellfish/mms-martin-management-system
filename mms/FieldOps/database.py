@@ -1,27 +1,25 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from app.db.orm_engine import Base
+from mms.FieldOps.models import Base
+import os
 
-# 连接字符串（使用 SQLite，未来可替换为 PostgreSQL/MySQL）
-SQLALCHEMY_DATABASE_URL = "sqlite:///./fieldops.db"
+# 从环境变量读取数据库路径（可选）
+DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///fieldops.db")
 
-# 创建引擎
+# 创建数据库引擎（使用连接池）
 engine = create_engine(
-    SQLALCHEMY_DATABASE_URL,
-    connect_args={"check_same_thread": False}  # SQLite 特性，仅在多线程时需要
+    DATABASE_URL,
+    pool_pre_ping=True,          # 每次获取连接前检查有效性
+    pool_recycle=3600,          # 连接池回收时间（1小时）
+    max_overflow=30             # 超出池大小时最多允许的额外连接数
 )
 
-# 创建会话工厂
+# 创建会话工厂（用于数据库操作）
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
-# 创建数据库表（如果不存在）
 def init_db():
+    """
+    初始化数据库：创建所有表结构。
+    调用此函数后，所有 ORM 模型将被映射为数据库表。
+    """
     Base.metadata.create_all(bind=engine)
-
-# 获取数据库会话的依赖项
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()

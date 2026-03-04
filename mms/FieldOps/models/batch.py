@@ -1,49 +1,30 @@
-from sqlalchemy import Column, Integer, String, DateTime
+from sqlalchemy import Column, Integer, String, ForeignKey
+from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
-from app.db.orm_engine import Base
-from datetime import datetime
 
+Base = declarative_base()
 
 class Batch(Base):
-    __tablename__ = "batches"
+    __tablename__ = 'batches'
+    
+    id = Column(Integer, primary_key=True)
+    batch_id = Column(String(50), unique=True, nullable=False)
+    quantity = Column(Integer, nullable=False)
+    status = Column(String(20), nullable=False)  # "in_barn", "pending_transfer", etc.
+    
+    # 多对多关系：一个批次可以分布在多个猪栏中，一个猪栏也可以有多个批次（通过中间表）
+    pens = relationship("Pen", secondary="batch_pens", back_populates="batches")
 
-    id = Column(Integer, primary_key=True, index=True)
-    batch_code = Column(String, unique=True, index=True)  # 例如 20260228，由一次运输进入养殖场
-    initial_quantity = Column(Integer, default=0)  # 进场总数量（头）
-    current_alive = Column(Integer, default=0)  # 当前存活数量（动态变化）
-    total_dead = Column(Integer, default=0)  # 累计死亡数（不包含出栏）
-    total_sold_final = Column(Integer, default=0)  # 累计最终出栏数（销售）
+class Transfer(Base):
+    __tablename__ = 'transfers'
     
-    # 关联信息：
-    parent_batch_id = Column(Integer, nullable=True)  # 如果是子批次（如分栏后产生的新批次）
-    source_batch_id = Column(Integer, nullable=True)  # 原始批次来源（如从外部引进）
+    id = Column(Integer, primary_key=True)
+    batch_id = Column(String(50), ForeignKey('batches.batch_id'))
+    from_pen_id = Column(Integer, ForeignKey('pens.id'))
+    to_pen_id = Column(Integer, ForeignKey('pens.id'))
+    timestamp = Column(DateTime, default=datetime.utcnow)
     
-    # 批次状态与生命周期：
-    status = Column(String, default="active")  # active, sold, dead, transferred
-    created_at = Column(DateTime, default=datetime.utcnow)
-    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
-    
-    # 外键关系：一个批次可以有多个事件（1对多）
-    events = relationship("Event", backref="batch", cascade="all, delete-orphan")
-    
-    # 该批次当前所在的栏位记录（多对多，通过 PigBatchLocation 表关联）
-    locations = relationship("PigBatchLocation", backref="batch", cascade="all, delete-orphan")
-    
-    def to_dict(self):
-        return {
-            "id": self.id,
-            "batch_code": self.batch_code,
-            "initial_quantity": self.initial_quantity,
-            "current_alive": self.current_alive,
-            "total_dead": self.total_dead,
-            "total_sold_final": self.total_sold_final,
-            "parent_batch_id": self.parent_batch_id,
-            "source_batch_id": self.source_batch_id,
-            "status": self.status,
-            "created_at": self.created_at.isoformat(),
-            "updated_at": self.updated_at.isoformat(),
-            "locations": [loc.to_dict() for loc in self.locations]
-        }
-
-    def __repr__(self):
-        return f"<Batch(id={self.id}, code='{self.batch_code}', status='{self.status}')>"
+    # 外键关联
+    batch = relationship("Batch")
+    from_pen = relationship("Pen", foreign_keys=[from_pen_id])
+    to_pen = relationship("Pen", foreign_keys=[to_pen_id])

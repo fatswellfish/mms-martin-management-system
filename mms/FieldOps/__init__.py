@@ -1,5 +1,2 @@
-from fastapi import FastAPI
-from mms.FieldOps.main import app as fieldops_app
-
-# 导出应用实例，供主系统导入
-__all__ = ["fieldops_app"]
+# 用于标记此目录为 Python 包
+# 可以在此处添加包级导入或常量
