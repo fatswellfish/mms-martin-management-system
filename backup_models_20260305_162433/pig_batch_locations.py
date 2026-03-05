@@ -1,4 +1,4 @@
-﻿from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, UUID, event
+from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, UUID, event
 from sqlalchemy.orm import relationship
 from sqlalchemy.dialects.postgresql import JSONB
 from .base import Base

@@ -1,4 +1,4 @@
-﻿from sqlalchemy import Column, Integer, String, ForeignKey
+from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship
 from app.db.orm_engine import Base
 
@@ -28,4 +28,3 @@ class Barn(Base):
 
     def __repr__(self):
         return f"<Barn(id={self.id}, name='{self.name}', category='{self.category.name}')>"
-

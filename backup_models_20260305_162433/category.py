@@ -1,4 +1,4 @@
-﻿from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String
 from app.db.orm_engine import Base
 
 
@@ -18,4 +18,3 @@ class Category(Base):
 
     def __repr__(self):
         return f"<Category(id={self.id}, name='{self.name}')>"
-
