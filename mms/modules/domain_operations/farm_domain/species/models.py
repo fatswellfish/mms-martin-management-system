@@ -1,1 +1,0 @@
-class FarmSpeciesModel: pass

@@ -1,1 +1,0 @@
-class FarmTimelineSchema: pass

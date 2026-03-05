@@ -1,13 +1,13 @@
 from fastapi import FastAPI
-from mms.FieldOps.routers import main_router
-from mms.FieldOps.database import init_db
+from .FieldOps.routers import main_router
+from .FieldOps.database import init_db
 
 # 创建 FastAPI 应用实例
 def create_app():
     app = FastAPI(title="FieldOps - 现场运维系统", description="基于 ISO9001 框架的养殖场管理平台")
     
     # 包含所有路由（包括 API）
-    app.include_router(main_router.create_main_router())
+    app.include_router(main_router)
     
     # 初始化数据库表结构（首次运行时）
     init_db()

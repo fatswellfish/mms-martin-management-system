@@ -1,1 +1,1 @@
-# mms package initializer
+# Mark mms as a Python package
