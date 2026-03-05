@@ -1,8 +1,8 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from mms.FieldOps.database import get_db
-from mms.FieldOps.models.barn import Barn
-from mms.FieldOps.schemas.barn_schema import BarnInDB
+from mms.fieldops.database import get_db
+from mms.fieldops.models.barn import Barn
+from mms.fieldops.schemas.barn_schema import BarnInDB
 
 router = APIRouter(
     prefix="/api/barns",

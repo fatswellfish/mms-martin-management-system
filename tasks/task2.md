@@ -17,15 +17,15 @@
 ## 模块划分与依赖关系
 | 模块 | 所属类别 | 关键依赖 | 主要功能 |
 |------|----------|----------|----------|
-| FieldOps | Q1: 组织与规划 | system_core | 农场/猪舍/猪栏的结构管理，数据树状展示 |
-| Q2_support_processes | Q2: 支持流程 | system_core, FieldOps | 设备维护、物料采购等支持性任务管理 |
-| Q3_operational_processes | Q3: 运营流程 | system_core, FieldOps, Q2_support_processes | 饲料投喂、批次跟踪、健康监测等核心生产活动 |
-| Q4_performance_and_improvement | Q4: 性能与改进 | system_core, FieldOps, Q2_support_processes, Q3_operational_processes | KPI分析、报表生成、持续改进流程 |
-| mms/fieldops/event_engine | 特殊模块 | system_core, FieldOps | 跨模块事件的统一处理中心 |
+| fieldops | Q1: 组织与规划 | system_core | 农场/猪舍/猪栏的结构管理，数据树状展示 |
+| Q2_support_processes | Q2: 支持流程 | system_core, fieldops | 设备维护、物料采购等支持性任务管理 |
+| Q3_operational_processes | Q3: 运营流程 | system_core, fieldops, Q2_support_processes | 饲料投喂、批次跟踪、健康监测等核心生产活动 |
+| Q4_performance_and_improvement | Q4: 性能与改进 | system_core, fieldops, Q2_support_processes, Q3_operational_processes | KPI分析、报表生成、持续改进流程 |
+| mms/fieldops/event_engine | 特殊模块 | system_core, fieldops | 跨模块事件的统一处理中心 |
 
 ## 开发流程与里程碑
 1. **第一阶段 (1周)**: 完成系统架构设计，搭建基础代码框架，创建所有必要的目录和初始文件。
-2. **第二阶段 (2周)**: 逐个完成各模块的开发，先从 `FieldOps` 和 `event_engine` 开始，因为它们是其他模块的基础。
+2. **第二阶段 (2周)**: 逐个完成各模块的开发，先从 `fieldops` 和 `event_engine` 开始，因为它们是其他模块的基础。
 3. **第三阶段 (1周)**: 实现模块间的集成，编写自动化测试，并进行端到端的联调。
 4. **第四阶段 (1周)**: 编写详细的文档，进行性能优化，准备最终的部署包。
 

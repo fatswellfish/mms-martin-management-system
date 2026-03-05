@@ -1,17 +1,17 @@
-FieldOps 项目任务卡 · FO-TAKEOVER-001
+fieldops 项目任务卡 · FO-TAKEOVER-001
 目前我正在做一个综合管理
 
 
 业务需求（BUSINESS SPEC）：
-1) FIELDOPS_BUSINESS_SPEC.txt
+1) fieldops_BUSINESS_SPEC.txt
 （养殖场业务设计 + 你的需求 + 实例配置 + 实验流程）
 
 ============================================================
-FIELDOPS 现场运维系统（养殖场管理）业务文档
+fieldops 现场运维系统（养殖场管理）业务文档
 版本：2026-02
 
 一、系统定位
-FieldOps 是一个用于养殖场现场运维的业务系统，涵盖：
+fieldops 是一个用于养殖场现场运维的业务系统，涵盖：
 养殖场结构
 进猪批次管理
 分栏管理
@@ -106,17 +106,17 @@ SummaryRow
 BarnGrid （平铺所有猪舍卡片）
 
 项目状态（PROJECT STATUS）：
-2) FIELDOPS_PROJECT_STATUS.txt
+2) fieldops_PROJECT_STATUS.txt
 （我们已经做了什么 / 目前进度 / API 状态）
 
 ============================================================
-FieldOps 项目进度文档
+fieldops 项目进度文档
 版本：2026-02
 
 一、当前状态（2026/02）
 
-FieldOps 独立系统已建立
-目录：mms/FieldOps/
+fieldops 独立系统已建立
+目录：mms/fieldops/
 包含：
 main.py
 router.py
@@ -131,19 +131,19 @@ models/
 
 HTML 模板迁移成功
 所有 legacy farm_domain 和 field_ops 下的 HTML 已复制到：
-mms/FieldOps/views/farm_domain/
-mms/FieldOps/views/field_ops/components/
-mms/FieldOps/views/field_ops/pages/
+mms/fieldops/views/farm_domain/
+mms/fieldops/views/field_ops/components/
+mms/fieldops/views/field_ops/pages/
 
 静态资源加载成功
 /static/css/style.css 正常工作
 
 UI 主页面可用
-FieldOps 首页（Dashboard）已加载成功
+fieldops 首页（Dashboard）已加载成功
 Farm Tree、Batch Detail、Event Trace、Inbound Wizard 页面可渲染
 
 URL 重写器已生效
-/pig-farm/* → 自动跳转到 /FieldOps/*
+/pig-farm/* → 自动跳转到 /fieldops/*
 
 Jinja Loader 已修复
 farm/* include 已正确重写到 views/farm_domain
@@ -167,18 +167,18 @@ Experiment API（未生成）
 产房共7舍,每个舍16栏,装猪只装15个,每栏15`16头猪,其中一个栏预留作为治疗,疗养用;保育共6舍,一个舍16栏,每栏1820头猪;育肥共7舍,15舍叫育肥舍,一个舍12圈,一栏20头猪,其中10栏装猪,2栏预留作为留观疗养; 6舍7舍叫二保育,每个舍12栏,一个栏30个猪,10栏装猪,2栏不装,也是预留作为治疗栏;目前的600头,在保育的5舍,6舍,一栏20头,共600头; 今天下午转至二保育,6舍,7舍,一舍300头. 预计下2月2日至8日之间进1500头,1213日进1500,不是之前的2200头了,这些猪预计进行一免,其中200400头在销售最终会留下来,进行留种或育肥,留下来的猪做2免;目前有个问题是实验疫苗的数量,如果本次生产的数量足够,就全都按计划进行,这个叫方案A,如果疫苗数量不够,需要方案B, 在保证600头二免的情况下,一部分猪,不做1免,直接作为对照组,销售掉;方案C,全部只做1免,不做2免;这个数量是根据疫苗实际生产数量来定的,目前可能会是3个范围,2900头份,3600头份或5000头份
 
 Agent 知识库（AGENT KNOWLEDGE）：
-3) FIELDOPS_AGENT_KNOWLEDGE.txt
+3) fieldops_AGENT_KNOWLEDGE.txt
 （agent 的当前知识库 / 主要模块 / 可执行任务）
 
 ============================================================
-FieldOps Agent 知识库
+fieldops Agent 知识库
 版本：2026-02
 
 一、Agent 范围与能力
 
-可以创建/改写 mms/FieldOps 内的文件
+可以创建/改写 mms/fieldops 内的文件
 
-可以复制 legacy 文件到 FieldOps
+可以复制 legacy 文件到 fieldops
 
 可以生成：
 
@@ -199,8 +199,8 @@ URL Rewrite 规则
 
 二、已知路径
 
-FieldOps 目录：
-mms/FieldOps/
+fieldops 目录：
+mms/fieldops/
 
 Legacy HTML：
 mms_legacy/templates/farm_domain/
@@ -212,7 +212,7 @@ mms_legacy/app/models/pig_batches.py
 mms_legacy/app/models/pig_batch_events.py
 mms_legacy/app/models/pig_batch_locations.py
 
-三、Agent 当前用于 FieldOps 的固定模板
+三、Agent 当前用于 fieldops 的固定模板
 router.py
 router_views.py
 router_rewrite.py
@@ -230,21 +230,21 @@ index.html
 自动绑定页面 AJAX/fetch 请求
 
 四、当前已完成内容（必须知晓）
-1. FieldOps 独立子系统已建立：mms/FieldOps/
-2. 所有 FARM/FieldOps HTML 已复制到 FieldOps/views/ 下
+1. fieldops 独立子系统已建立：mms/fieldops/
+2. 所有 FARM/fieldops HTML 已复制到 fieldops/views/ 下
 3. 所有页面 farm-tree、farm-structure、batch-detail、event-trace、inbound-wizard 均可 200 OK 渲染
 4. 静态 CSS 成功加载
-5. 旧系统 /pig-farm/* 路径已自动跳转到 /FieldOps/*
+5. 旧系统 /pig-farm/* 路径已自动跳转到 /fieldops/*
 6. Jinja Loader 已修复，可正确加载 farm/ 与 field_ops/ includes
 
 五、下一位必须继续的开发任务
-1. 生成 FieldOps 后端真实 API：
-   /FieldOps/api/tree
-   /FieldOps/api/batches
-   /FieldOps/api/barn/{id}
-   /FieldOps/api/pen/{id}
-   /FieldOps/api/events
-   /FieldOps/api/experiment
+1. 生成 fieldops 后端真实 API：
+   /fieldops/api/tree
+   /fieldops/api/batches
+   /fieldops/api/barn/{id}
+   /fieldops/api/pen/{id}
+   /fieldops/api/events
+   /fieldops/api/experiment
 
 2. 将 API 与前端卡片 UI 联动
 
@@ -271,9 +271,9 @@ Farm → Barn(带类型) → Pen → Batch 分布 → Events
 1. 加载三份文档
 2. 阅读当前项目状态
 3. 从未完成列表依序推进
-4. 所有后端代码写入 mms/FieldOps/
+4. 所有后端代码写入 mms/fieldops/
 5. legacy 只读
 6. 使用 mms_agent 执行 DSL
-7. 维持 FieldOps 为独立子系统
+7. 维持 fieldops 为独立子系统
 
 （任务卡结束）

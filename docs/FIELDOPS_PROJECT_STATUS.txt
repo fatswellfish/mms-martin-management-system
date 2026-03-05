@@ -1,4 +1,4 @@
-# FIELDOPS_PROJECT_STATUS.txt
+# fieldops_PROJECT_STATUS.txt
 
 ## 1. 当前状态 (Current Status)
 - **项目范围**: `mms/fieldops/` 模块已建立，是独立的开发单元。
@@ -10,8 +10,8 @@
 ## 2. 后端 API 进度 (Backend API Progress)
 | API 接口 | 状态 | 说明 |
 |----------|------|------|
-| `/FieldOps/tree` | 🟡 | 待实现，需返回嵌套的农场树状数据。 |
-| `/FieldOps/barn/{barn_id}/pens` | 🟡 | 待实现，需返回特定猪舍下的所有猪栏。 |
+| `/fieldops/tree` | 🟡 | 待实现，需返回嵌套的农场树状数据。 |
+| `/fieldops/barn/{barn_id}/pens` | 🟡 | 待实现，需返回特定猪舍下的所有猪栏。 |
 | 其他接口（如 /batch, /event） | 🔴 | 未开始 | 
 
 ## 3. 任务依赖 (Task Dependencies)

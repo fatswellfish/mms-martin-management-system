@@ -12,7 +12,7 @@
 ### 2. 输出优先级 (强制)
 - **优先输出代码/文件列表**: 在每个步骤中，**首要任务是输出具体可执行的代码片段、文件名列表或操作指令**。分析性文字应作为补充说明，且长度严格控制在 <200字。
 - **示例**: 
-  - ✅ 正确: `已生成文件: mms/modules/FieldOps/models/location.py, mms/modules/FieldOps/schemas/location.py`
+  - ✅ 正确: `已生成文件: mms/modules/fieldops/models/location.py, mms/modules/fieldops/schemas/location.py`
   - ❌ 错误: 大段解释“为什么需要这两个文件”
 
 ### 3. 进展汇报机制 (强制)

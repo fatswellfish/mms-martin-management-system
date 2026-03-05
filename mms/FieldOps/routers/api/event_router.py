@@ -1,9 +1,9 @@
 from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.orm import Session
-from mms.FieldOps.database import get_db
-from mms.FieldOps.models.event import Event
-from mms.FieldOps.schemas.event_schema import EventCreate, EventUpdate, EventInDB
-from mms.FieldOps.services.event_service import (
+from mms.fieldops.database import get_db
+from mms.fieldops.models.event import Event
+from mms.fieldops.schemas.event_schema import EventCreate, EventUpdate, EventInDB
+from mms.fieldops.services.event_service import (
     get_event,
     get_events,
     create_event,

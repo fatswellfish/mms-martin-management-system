@@ -1,7 +1,7 @@
 """
 Experiment API Router
 
-This module defines the FastAPI routes for the experiment system in FieldOps.
+This module defines the FastAPI routes for the experiment system in fieldops.
 """
 
 from fastapi import APIRouter, Depends, HTTPException
@@ -11,7 +11,7 @@ from .database import get_db_session
 from .experiment_service import service
 
 # Create router instance
-router = APIRouter(prefix="/FieldOps/api", tags=["experiment"])
+router = APIRouter(prefix="/fieldops/api", tags=["experiment"])
 
 # Request models
 class RunExperimentRequest(BaseModel):

@@ -1,7 +1,7 @@
 """
 API Package Initialization
 
-This file initializes the API package for the FieldOps project.
+This file initializes the API package for the fieldops project.
 """
 
 # Import key routers
@@ -15,4 +15,4 @@ __all__ = [
 # Package metadata
 __version__ = "1.0.0"
 __author__ = "OpenClaw Assistant"
-__description__ = "API routes for the FieldOps project"
+__description__ = "API routes for the fieldops project"

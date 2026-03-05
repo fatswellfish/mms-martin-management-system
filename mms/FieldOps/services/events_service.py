@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 from app.db.orm_engine import SessionLocal
-from mms.FieldOps.models.event import Event, get_event_color
+from mms.fieldops.models.event import Event, get_event_color
 
 
 def list_events(limit: int = 50):

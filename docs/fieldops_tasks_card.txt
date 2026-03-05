@@ -1,9 +1,9 @@
-# FIELDOPS_TASKS_CARD.txt
+# fieldops_TASKS_CARD.txt
 
-## 任务卡片：`FieldOps` 模块开发 - 核心功能（2026-03）
+## 任务卡片：`fieldops` 模块开发 - 核心功能（2026-03）
 
 ### 1. 任务概览 (Task Overview)
-- **目标**: 建立 `FieldOps` 模块的完整代码基础，实现其核心数据模型和接口。
+- **目标**: 建立 `fieldops` 模块的完整代码基础，实现其核心数据模型和接口。
 - **范围**: 创建并填充 `mms/fieldops/` 目录下的所有文件。
 - **优先级**: 高 (H) - 为后续所有模块提供数据基础。
 

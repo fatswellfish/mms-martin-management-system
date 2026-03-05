@@ -1,7 +1,7 @@
 from fastapi import APIRouter
-from mms.FieldOps.services.events_service import list_events
+from mms.fieldops.services.events_service import list_events
 
-router = APIRouter(prefix="/FieldOps/api", tags=["FieldOps Events"])
+router = APIRouter(prefix="/fieldops/api", tags=["fieldops Events"])
 
 @router.get("/events")
 def api_events(limit: int = 50):

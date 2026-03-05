@@ -1,4 +1,4 @@
-# FIELDOPS_AGENT_KNOWLEDGE.txt
+# fieldops_AGENT_KNOWLEDGE.txt
 
 ## 1. Agent 范围与能力 (Agent Scope & Capabilities)
 - **可操作范围**: 严格限于 `mms/fieldops/` 及其子目录（`event_engine/`）。

@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException
 from typing import List
-from mms.FieldOps.models.batch import Batch
-from mms.FieldOps.schemas.batch import BatchResponse
+from mms.fieldops.models.batch import Batch
+from mms.fieldops.schemas.batch import BatchResponse
 
 # 批次相关路由
 def create_batch_router() -> APIRouter:

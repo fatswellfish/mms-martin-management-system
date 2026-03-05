@@ -7,22 +7,22 @@ from jinja2 import Environment, ChoiceLoader, FileSystemLoader, PrefixLoader
 #  Loader 配置（最终版）
 # --------------------------
 loader = ChoiceLoader([
-    FileSystemLoader("mms/FieldOps"),
-    FileSystemLoader("mms/FieldOps/views"),
-    FileSystemLoader("mms/FieldOps/views/farm_domain"),
-    FileSystemLoader("mms/FieldOps/views/field_ops/pages"),
+    FileSystemLoader("mms/fieldops"),
+    FileSystemLoader("mms/fieldops/views"),
+    FileSystemLoader("mms/fieldops/views/farm_domain"),
+    FileSystemLoader("mms/fieldops/views/field_ops/pages"),
 
     # *** 关键：farm/** → views/farm_domain/** ***
     PrefixLoader({
-        "farm": FileSystemLoader("mms/FieldOps/views/farm_domain")
+        "farm": FileSystemLoader("mms/fieldops/views/farm_domain")
     }, delimiter="/"),
 ])
 
 env = Environment(loader=loader)
-templates = Jinja2Templates(directory="mms/FieldOps")
+templates = Jinja2Templates(directory="mms/fieldops")
 templates.env = env
 
-router = APIRouter(prefix="/FieldOps", tags=["FieldOps Views"])
+router = APIRouter(prefix="/fieldops", tags=["fieldops Views"])
 
 def view(template: str):
     async def _view(request: Request):

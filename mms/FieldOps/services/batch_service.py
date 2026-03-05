@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
-from mms.FieldOps.models.batch import Batch
-from mms.FieldOps.schemas.batch_schema import BatchCreate, BatchUpdate, BatchInDB
+from mms.fieldops.models.batch import Batch
+from mms.fieldops.schemas.batch_schema import BatchCreate, BatchUpdate, BatchInDB
 from typing import List
 
 

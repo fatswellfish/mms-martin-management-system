@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 from typing import List
-from mms.FieldOps.models.location import Farm, Barn, Pen
-from mms.FieldOps.schemas.location import FarmResponse, BarnResponse, PenResponse
+from mms.fieldops.models.location import Farm, Barn, Pen
+from mms.fieldops.schemas.location import FarmResponse, BarnResponse, PenResponse
 
 # 位置相关路由
 def create_location_router() -> APIRouter:

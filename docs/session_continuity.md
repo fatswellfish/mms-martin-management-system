@@ -12,8 +12,8 @@
 - **每次完成一个任务步骤后**，在输出最终结果前，必须执行以下操作：
   1.  **创建/更新 `tasks/current_step.md`**: 将当前已完成的任务描述、已生成的文件列表和下一步计划写入此文件。例如：
       ```markdown
-      ## 步骤: 1/3 - 创建 FieldOps 模型层
-      - 已完成: `mms/modules/FieldOps/models/location.py`, `mms/modules/FieldOps/schemas/location.py`
+      ## 步骤: 1/3 - 创建 fieldops 模型层
+      - 已完成: `mms/modules/fieldops/models/location.py`, `mms/modules/fieldops/schemas/location.py`
       - 下一步: 开发 `models/batch.py` 和 `schemas/batch.py`
       ```
   2.  **在回复中明确声明**：

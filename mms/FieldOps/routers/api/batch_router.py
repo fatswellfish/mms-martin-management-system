@@ -1,9 +1,9 @@
 from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.orm import Session
-from mms.FieldOps.database import get_db
-from mms.FieldOps.models.batch import Batch
-from mms.FieldOps.schemas.batch_schema import BatchCreate, BatchUpdate, BatchInDB
-from mms.FieldOps.services.batch_service import (
+from mms.fieldops.database import get_db
+from mms.fieldops.models.batch import Batch
+from mms.fieldops.schemas.batch_schema import BatchCreate, BatchUpdate, BatchInDB
+from mms.fieldops.services.batch_service import (
     get_batch,
     get_batch_by_code,
     get_batches,

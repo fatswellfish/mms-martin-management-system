@@ -16,7 +16,7 @@ if context.config.config_file_name is not None:
 # for 'autogenerate' support
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
-from mms.FieldOps.models import Base
+from mms.fieldops.models import Base
 
 # Ensure that we are using the correct database URL
 # This allows us to override it via environment variable

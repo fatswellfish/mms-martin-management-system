@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
-from mms.FieldOps.models.event import Event
-from mms.FieldOps.schemas.event_schema import EventCreate, EventUpdate, EventInDB
+from mms.fieldops.models.event import Event
+from mms.fieldops.schemas.event_schema import EventCreate, EventUpdate, EventInDB
 from typing import List
 from datetime import datetime
 
@@ -13,7 +13,7 @@ def get_events(db: Session, skip: int = 0, limit: int = 50) -> List[Event]:
 
 def create_event(db: Session, event: EventCreate) -> Event:
     # 自动设置颜色（基于事件类型）
-    from mms.FieldOps.models.event import get_event_color
+    from mms.fieldops.models.event import get_event_color
     color = get_event_color(event.event_type)
     
     db_event = Event(
@@ -42,7 +42,7 @@ def update_event(db: Session, event_id: int, event_update: EventUpdate) -> Event
         setattr(db_event, key, value)
     # 重新计算颜色（如果事件类型被修改）
     if "event_type" in event_update.dict(exclude_unset=True):
-        from mms.FieldOps.models.event import get_event_color
+        from mms.fieldops.models.event import get_event_color
         db_event.color = get_event_color(event_update.event_type)
     db.commit()
     db.refresh(db_event)

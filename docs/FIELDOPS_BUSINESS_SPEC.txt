@@ -1,7 +1,7 @@
-# FIELDOPS_BUSINESS_SPEC.txt
+# fieldops_BUSINESS_SPEC.txt
 
 ## 1. 系统定位 (System Positioning)
-FieldOps 是一个用于养殖场现场运维的业务系统，核心功能是管理：
+fieldops 是一个用于养殖场现场运维的业务系统，核心功能是管理：
 - **物理结构**（农场 -> 猪舍 -> 猪栏）
 - **生产批次**（猪批次的全生命周期管理）
 - **事件流**（转栏、出栏、防疫、死亡等实时数据）

@@ -1,9 +1,9 @@
 from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.orm import Session
-from mms.FieldOps.database import get_db
-from mms.FieldOps.models.experiment import Experiment
-from mms.FieldOps.schemas.experiment_schema import ExperimentCreate, ExperimentUpdate, ExperimentInDB
-from mms.FieldOps.services.experiment_service import (
+from mms.fieldops.database import get_db
+from mms.fieldops.models.experiment import Experiment
+from mms.fieldops.schemas.experiment_schema import ExperimentCreate, ExperimentUpdate, ExperimentInDB
+from mms.fieldops.services.experiment_service import (
     get_experiment,
     get_experiments,
     create_experiment,

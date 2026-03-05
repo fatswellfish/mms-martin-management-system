@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException
 from typing import List
-from mms.FieldOps.models.event import Event
-from mms.FieldOps.schemas.event import EventResponse
+from mms.fieldops.models.event import Event
+from mms.fieldops.schemas.event import EventResponse
 
 # 事件相关路由
 def create_event_router() -> APIRouter:

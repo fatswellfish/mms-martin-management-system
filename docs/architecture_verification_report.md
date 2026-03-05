@@ -1,4 +1,4 @@
-# 架构验证报告：FieldOps 系统分层架构
+# 架构验证报告：fieldops 系统分层架构
 
 ## 1. 各层功能说明与职责边界
 
@@ -25,7 +25,7 @@
 ## 2. 数据流示意图（文字描述）
 
 1. 用户在前端界面上操作（如点击“运行实验”按钮）
-2. UI Layer 发送 HTTP 请求到 API Layer（`POST /FieldOps/api/experiment/run`）
+2. UI Layer 发送 HTTP 请求到 API Layer（`POST /fieldops/api/experiment/run`）
 3. API Layer 验证请求参数后，调用 Service Layer 的 `run_experiment()` 方法
 4. Service Layer 执行业务逻辑，需要数据时调用 Data Access Layer
 5. Data Access Layer 执行数据库查询，返回结果给 Service Layer

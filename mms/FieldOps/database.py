@@ -1,6 +1,6 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from mms.FieldOps.models import Base
+from mms.fieldops.models import Base
 import os
 
 # 从环境变量读取数据库路径（可选）
