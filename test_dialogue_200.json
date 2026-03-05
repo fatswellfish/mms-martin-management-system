@@ -1,0 +1,17 @@
+{
+  "conversation_id": "project_123",
+  "messages": [
+    {
+      "id": 1,
+      "sender": "user",
+      "text": "Start of dialogue - testing task card generation at 200 messages",
+      "timestamp": "2026-03-05T13:00:00Z"
+    },
+    {
+      "id": 2,
+      "sender": "assistant",
+      "text": "I've started the test. The system will generate a new task card when we reach 200 messages.",
+      "timestamp": "2026-03-05T13:00:05Z"
+    }
+  ]
+}

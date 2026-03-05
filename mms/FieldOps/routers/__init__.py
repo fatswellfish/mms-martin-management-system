@@ -1,8 +1,5 @@
-from fastapi import APIRouter
-from .api import api_router
+# mms/fieldops/routers/__init__.py
+# 用于导出模块的公共接口，例如 router，供主应用加载。
+from .router import router
 
-# 合并所有路由到主应用
-main_router = APIRouter()
-main_router.include_router(api_router, prefix="/api")
-
-__all__ = ["main_router"]
+__all__ = ['router']

@@ -1,0 +1,30 @@
+# FIELDOPS_TASKS_CARD.txt
+
+## 任务卡片：`FieldOps` 模块开发 - 核心功能（2026-03）
+
+### 1. 任务概览 (Task Overview)
+- **目标**: 建立 `FieldOps` 模块的完整代码基础，实现其核心数据模型和接口。
+- **范围**: 创建并填充 `mms/fieldops/` 目录下的所有文件。
+- **优先级**: 高 (H) - 为后续所有模块提供数据基础。
+
+### 2. 详细任务 (Detailed Tasks)
+| 步骤 | 任务描述 | 交付物 | 状态 |
+|------|----------|--------|------|
+| 1 | 根据 `docs/fieldops_tree.md` 创建 `mms/fieldops/` 及其子目录结构。 | 成功创建目录 | ✅ |
+| 2 | 在 `mms/fieldops/models.py` 中定义 `Farm`, `Barn`, `Pen` 数据模型。 | `models.py` 文件 | 🟡 |
+| 3 | 在 `mms/fieldops/schemas.py` 中定义对应的数据序列化方案。 | `schemas.py` 文件 | 🟡 |
+| 4 | 在 `mms/fieldops/service.py` 中实现 `get_farms_with_barns()` 和 `get_barn_pens()` 函数。 | `service.py` 文件 | 🟡 |
+| 5 | 在 `mms/fieldops/router.py` 中实现 `/tree` 和 `/barn/{barn_id}/pens` 接口。 | `router.py` 文件 | 🟡 |
+| 6 | 在 `mms/fieldops/event_engine/` 下创建子模块的初始文件结构。 | `event_engine/` 目录及文件 | 🟡 |
+
+### 3. 关联文档 (Related Documents)
+- **`docs/fieldops_tree.md`**: 本任务的唯一依据，定义了所有文件的路径和内容要求。
+- **`docs/fieldops_business_spec.txt`**: 提供了业务需求，如“猪舍”、“猪栏”、“批次”、“事件”的定义和逻辑。
+- **`docs/project_tree.md`**: 定义了整个项目的宏观结构，确保本任务不偏离全局架构。
+
+### 4. 任务状态管理 (Status Management)
+- **更新频率**: 每完成一个步骤，立即在 `status` 列标记为 `✅` 或 `🟡`。
+- **更新方式**: 通过 `tasks/current_step.md` 进行同步，确保所有参与者看到一致的状态。
+- **最终确认**: 当所有步骤完成并验证后，此卡片将被标记为“已完成”，并归档至 `docs/archive/`。
+
+> **重要**: 任何对本卡片或关联文档的修改，都必须先经过您的审批。
