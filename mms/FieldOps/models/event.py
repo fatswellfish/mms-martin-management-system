@@ -1,4 +1,4 @@
-﻿from sqlalchemy import Column, Integer, String, DateTime, ForeignKey
+from sqlalchemy import Column, Integer, String, DateTime, ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 from datetime import datetime
@@ -16,7 +16,7 @@ class Event(Base):
     barn_id = Column(Integer, ForeignKey('barns.id'))
     description = Column(String(200))
     
-    # 外键关联
+    # 外键关联 → 使用类对象而非字符串（修复关键）
     batch = relationship("Batch")
     pen = relationship("Pen")
     barn = relationship("Barn")

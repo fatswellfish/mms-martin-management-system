@@ -4,20 +4,20 @@ from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
 
-class Barn(Base):
-    __tablename__ = 'barns'
+class Farm(Base):
+    __tablename__ = 'farms'
 
     id = Column(Integer, primary_key=True)
     name = Column(String(100), nullable=False)
-    farm_id = Column(Integer, nullable=False)
+    location = Column(String(200))
     created_at = Column(DateTime, default=datetime.utcnow)
 
-    def __init__(self, id=None, name=None, farm_id=None, created_at=None):
+    def __init__(self, id=None, name=None, location=None, created_at=None):
         if id is not None:
             self.id = id
         if name is not None:
             self.name = name
-        if farm_id is not None:
-            self.farm_id = farm_id
+        if location is not None:
+            self.location = location
         if created_at is not None:
             self.created_at = created_at
